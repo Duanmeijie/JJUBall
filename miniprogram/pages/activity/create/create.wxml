@@ -1,0 +1,121 @@
+<view class="page-container">
+  <view class="form-section">
+    <!-- Title -->
+    <view class="form-item">
+      <text class="form-label">活动标题</text>
+      <input
+        class="form-input"
+        placeholder="请输入活动标题"
+        value="{{title}}"
+        bindinput="onInputChange"
+        data-field="title"
+        maxlength="50"
+      />
+    </view>
+
+    <!-- Type Picker -->
+    <view class="form-item">
+      <text class="form-label">活动类型</text>
+      <picker
+        mode="selector"
+        range="{{typeOptions}}"
+        range-key="label"
+        value="{{typeIndex}}"
+        bindchange="onTypePick"
+      >
+        <view class="form-picker {{type ? '' : 'placeholder'}}">
+          <text>{{type ? typeOptions[typeIndex].label : '请选择活动类型'}}</text>
+          <text class="picker-arrow">></text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- Location -->
+    <view class="form-item">
+      <text class="form-label">活动地点</text>
+      <input
+        class="form-input"
+        placeholder="请输入活动地点"
+        value="{{location}}"
+        bindinput="onInputChange"
+        data-field="location"
+        maxlength="100"
+      />
+    </view>
+
+    <!-- Start Date & Time -->
+    <view class="form-item">
+      <text class="form-label">开始时间</text>
+      <view class="datetime-picker">
+        <picker
+          mode="date"
+          value="{{startDate}}"
+          start="{{today}}"
+          bindchange="onStartDatePick"
+        >
+          <view class="form-picker half {{startDate ? '' : 'placeholder'}}">
+            <text>{{startDate || '选择日期'}}</text>
+          </view>
+        </picker>
+        <picker
+          mode="time"
+          value="{{startTime}}"
+          bindchange="onStartTimePick"
+        >
+          <view class="form-picker half {{startTime ? '' : 'placeholder'}}">
+            <text>{{startTime || '选择时间'}}</text>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <!-- End Date & Time -->
+    <view class="form-item">
+      <text class="form-label">结束时间</text>
+      <view class="datetime-picker">
+        <picker
+          mode="date"
+          value="{{endDate}}"
+          start="{{startDate || today}}"
+          bindchange="onEndDatePick"
+        >
+          <view class="form-picker half {{endDate ? '' : 'placeholder'}}">
+            <text>{{endDate || '选择日期'}}</text>
+          </view>
+        </picker>
+        <picker
+          mode="time"
+          value="{{endTime}}"
+          bindchange="onEndTimePick"
+        >
+          <view class="form-picker half {{endTime ? '' : 'placeholder'}}">
+            <text>{{endTime || '选择时间'}}</text>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <!-- Max Count -->
+    <view class="form-item">
+      <text class="form-label">人数上限</text>
+      <input
+        class="form-input"
+        type="number"
+        placeholder="请输入人数上限"
+        value="{{maxCount}}"
+        bindinput="onInputChange"
+        data-field="maxCount"
+      />
+    </view>
+  </view>
+
+  <!-- Submit Button -->
+  <view class="submit-section">
+    <button
+      class="submit-btn"
+      bindtap="handleSubmit"
+      disabled="{{submitting}}"
+      loading="{{submitting}}"
+    >发布活动</button>
+  </view>
+</view>

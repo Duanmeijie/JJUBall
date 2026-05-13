@@ -1,0 +1,64 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/activity/list/list",
+    "pages/activity/detail/detail",
+    "pages/activity/create/create",
+    "pages/match/record/record",
+    "pages/match/history/history",
+    "pages/match/detail/detail",
+    "pages/ranking/ranking/ranking",
+    "pages/ranking/season/season",
+    "pages/profile/profile/profile",
+    "pages/profile/edit/edit",
+    "pages/profile/messages/messages",
+    "pages/profile/feedback/feedback",
+    "pages/admin/dashboard/dashboard",
+    "pages/admin/user-manage/user-manage",
+    "pages/admin/score-rules/score-rules",
+    "pages/admin/credit-rules/credit-rules",
+    "pages/admin/data-export/data-export",
+    "pages/admin/weather-cancel/weather-cancel"
+  ],
+  "window": {
+    "backgroundColor": "#F5F5F8",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#D4363C",
+    "navigationBarTitleText": "JJUBall",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#9E9EB0",
+    "selectedColor": "#D4363C",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/images/tab-home.png",
+        "selectedIconPath": "static/images/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/activity/list/list",
+        "text": "活动",
+        "iconPath": "static/images/tab-activity.png",
+        "selectedIconPath": "static/images/tab-activity-active.png"
+      },
+      {
+        "pagePath": "pages/ranking/ranking/ranking",
+        "text": "排行",
+        "iconPath": "static/images/tab-rank.png",
+        "selectedIconPath": "static/images/tab-rank-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile/profile",
+        "text": "我的",
+        "iconPath": "static/images/tab-profile.png",
+        "selectedIconPath": "static/images/tab-profile-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

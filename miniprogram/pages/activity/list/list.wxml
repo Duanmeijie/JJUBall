@@ -1,0 +1,84 @@
+<view class="page-container">
+  <!-- Status Filter Tabs -->
+  <view class="filter-section">
+    <scroll-view class="status-tabs" scroll-x enable-flex>
+      <view
+        class="tab-item {{statusFilter === '' ? 'active' : ''}}"
+        data-value=""
+        bindtap="onFilterChange"
+      >全部</view>
+      <view
+        class="tab-item {{statusFilter === 'enrolling' ? 'active' : ''}}"
+        data-value="enrolling"
+        bindtap="onFilterChange"
+      >报名中</view>
+      <view
+        class="tab-item {{statusFilter === 'ended' ? 'active' : ''}}"
+        data-value="ended"
+        bindtap="onFilterChange"
+      >已结束</view>
+      <view
+        class="tab-item {{statusFilter === 'cancelled' ? 'active' : ''}}"
+        data-value="cancelled"
+        bindtap="onFilterChange"
+      >已取消</view>
+    </scroll-view>
+
+    <!-- Type Filter -->
+    <view class="type-filter">
+      <view
+        class="type-item {{typeFilter === '' ? 'active' : ''}}"
+        data-value=""
+        bindtap="onTypeChange"
+      >全部类型</view>
+      <view
+        class="type-item {{typeFilter === 'entertainment' ? 'active' : ''}}"
+        data-value="entertainment"
+        bindtap="onTypeChange"
+      >娱乐赛</view>
+      <view
+        class="type-item {{typeFilter === 'internal' ? 'active' : ''}}"
+        data-value="internal"
+        bindtap="onTypeChange"
+      >内部赛</view>
+      <view
+        class="type-item {{typeFilter === 'friendly' ? 'active' : ''}}"
+        data-value="friendly"
+        bindtap="onTypeChange"
+      >交流赛</view>
+    </view>
+  </view>
+
+  <!-- Activity List -->
+  <view class="activity-list" wx:if="{{activityList.length > 0}}">
+    <activity-card
+      wx:for="{{activityList}}"
+      wx:key="_id"
+      activity="{{item}}"
+      bindtap="goToDetail"
+      data-id="{{item._id}}"
+    />
+  </view>
+
+  <!-- Empty State -->
+  <view class="empty-state" wx:if="{{!loading && activityList.length === 0}}">
+    <image class="empty-icon" src="/images/empty.png" mode="aspectFit" />
+    <text class="empty-text">暂无活动</text>
+  </view>
+
+  <!-- Load More -->
+  <view class="load-more" wx:if="{{activityList.length > 0}}">
+    <view class="loading-more" wx:if="{{loading}}">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">加载中...</text>
+    </view>
+    <view class="no-more" wx:elif="{{!hasMore}}">
+      <text class="no-more-text">没有更多了</text>
+    </view>
+  </view>
+
+  <!-- FAB Button - Admin Only -->
+  <view class="fab-button" wx:if="{{isAdmin}}" bindtap="goToCreate">
+    <text class="fab-text">发布活动</text>
+  </view>
+</view>

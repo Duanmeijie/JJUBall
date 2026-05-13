@@ -1,0 +1,127 @@
+/* components/match-item/match-item.wxss */
+.match-item {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.match-item:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+/* Match Header */
+.match-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.match-type {
+  font-size: 24rpx;
+  color: #D4363C;
+  background: rgba(212, 54, 60, 0.08);
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  font-weight: 500;
+}
+
+.match-date {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+/* Match Body */
+.match-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx 0;
+}
+
+/* Player */
+.player {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.player-a {
+  justify-content: flex-start;
+}
+
+.player-b {
+  justify-content: flex-end;
+}
+
+.player-name {
+  font-size: 30rpx;
+  color: #333333;
+  font-weight: 500;
+  max-width: 180rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player.winner .player-name {
+  color: #2E7D32;
+  font-weight: 600;
+}
+
+.winner-badge {
+  font-size: 20rpx;
+  color: #ffffff;
+  background: linear-gradient(135deg, #4CAF50, #66BB6A);
+  padding: 4rpx 10rpx;
+  border-radius: 6rpx;
+  margin: 0 8rpx;
+  font-weight: 500;
+}
+
+/* Score */
+.score-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160rpx;
+}
+
+.score {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #666666;
+  min-width: 48rpx;
+  text-align: center;
+}
+
+.score-winner {
+  color: #2E7D32;
+}
+
+.score-separator {
+  font-size: 36rpx;
+  color: #cccccc;
+  margin: 0 12rpx;
+  font-weight: 300;
+}
+
+/* Match Footer */
+.match-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 16rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #f5f5f5;
+}
+
+.pending-tag {
+  font-size: 22rpx;
+  color: #FF9800;
+  background: #FFF3E0;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+}

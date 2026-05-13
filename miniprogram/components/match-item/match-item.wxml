@@ -1,0 +1,35 @@
+<!-- components/match-item/match-item.wxml -->
+<view class="match-item" bindtap="onTap">
+  <!-- Match Type & Date -->
+  <view class="match-header">
+    <view class="match-type">{{matchTypeText}}</view>
+    <view class="match-date">{{matchDate}}</view>
+  </view>
+
+  <!-- Players & Score -->
+  <view class="match-body">
+    <!-- Player A -->
+    <view class="player player-a {{match.winnerId === match.playerAId ? 'winner' : ''}}">
+      <view class="player-name">{{match.playerAName}}</view>
+      <view class="winner-badge" wx:if="{{match.winnerId === match.playerAId}}">胜</view>
+    </view>
+
+    <!-- Score -->
+    <view class="score-section">
+      <text class="score score-a {{match.winnerId === match.playerAId ? 'score-winner' : ''}}">{{match.scoreA}}</text>
+      <text class="score-separator">:</text>
+      <text class="score score-b {{match.winnerId === match.playerBId ? 'score-winner' : ''}}">{{match.scoreB}}</text>
+    </view>
+
+    <!-- Player B -->
+    <view class="player player-b {{match.winnerId === match.playerBId ? 'winner' : ''}}">
+      <view class="winner-badge" wx:if="{{match.winnerId === match.playerBId}}">胜</view>
+      <view class="player-name">{{match.playerBName}}</view>
+    </view>
+  </view>
+
+  <!-- Match Status -->
+  <view class="match-footer" wx:if="{{match.status === 'pending'}}">
+    <view class="pending-tag">进行中</view>
+  </view>
+</view>

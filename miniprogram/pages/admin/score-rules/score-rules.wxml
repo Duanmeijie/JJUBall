@@ -1,0 +1,90 @@
+<view class="container" wx:if="{{authorized}}">
+  <!-- Season Info -->
+  <view class="season-info">
+    <text class="season-label">当前赛季:</text>
+    <text class="season-name">{{seasonName}}</text>
+  </view>
+
+  <!-- Rules Table -->
+  <view class="rules-section">
+    <view class="rules-header">
+      <text class="col col-type">比赛类型</text>
+      <text class="col col-score">胜分</text>
+      <text class="col col-score">负分</text>
+      <text class="col col-score">权重</text>
+    </view>
+
+    <view class="rules-body">
+      <view class="rule-row" wx:for="{{rules}}" wx:key="matchType">
+        <!-- Match Type Name -->
+        <text class="col col-type">{{item.matchTypeName}}</text>
+
+        <!-- Win Score -->
+        <view class="col col-score">
+          <text wx:if="{{!editing}}">{{item.winScore}}</text>
+          <input
+            wx:if="{{editing}}"
+            class="rule-input"
+            type="digit"
+            value="{{item.winScore}}"
+            data-index="{{index}}"
+            data-field="winScore"
+            bindinput="onRuleChange"
+          />
+        </view>
+
+        <!-- Lose Score -->
+        <view class="col col-score">
+          <text wx:if="{{!editing}}">{{item.loseScore}}</text>
+          <input
+            wx:if="{{editing}}"
+            class="rule-input"
+            type="digit"
+            value="{{item.loseScore}}"
+            data-index="{{index}}"
+            data-field="loseScore"
+            bindinput="onRuleChange"
+          />
+        </view>
+
+        <!-- Weight -->
+        <view class="col col-score">
+          <text wx:if="{{!editing}}">{{item.weight}}</text>
+          <input
+            wx:if="{{editing}}"
+            class="rule-input"
+            type="digit"
+            value="{{item.weight}}"
+            data-index="{{index}}"
+            data-field="weight"
+            bindinput="onRuleChange"
+          />
+        </view>
+      </view>
+    </view>
+
+    <!-- Empty State -->
+    <view class="empty-tip" wx:if="{{rules.length === 0}}">
+      <text>暂无积分规则</text>
+    </view>
+  </view>
+
+  <!-- Action Buttons -->
+  <view class="action-bar">
+    <view class="btn btn-edit" bindtap="toggleEdit" wx:if="{{!editing}}">
+      <text>编辑规则</text>
+    </view>
+    <view class="btn-group" wx:if="{{editing}}">
+      <view class="btn btn-cancel" bindtap="toggleEdit">
+        <text>取消</text>
+      </view>
+      <view class="btn btn-save" bindtap="handleSave">
+        <text>保存</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="no-auth" wx:if="{{!authorized}}">
+  <text class="no-auth-text">无权访问此页面</text>
+</view>

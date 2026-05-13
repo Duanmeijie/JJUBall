@@ -1,0 +1,158 @@
+.container {
+  padding: 24rpx;
+  background-color: #f5f6fa;
+  min-height: 100vh;
+}
+
+/* Season Info */
+.season-info {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.season-label {
+  font-size: 28rpx;
+  color: #666666;
+  margin-right: 12rpx;
+}
+
+.season-name {
+  font-size: 30rpx;
+  color: #1a73e8;
+  font-weight: 600;
+}
+
+/* Rules Table */
+.rules-section {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+  margin-bottom: 32rpx;
+}
+
+.rules-header {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 24rpx;
+  background-color: #f8f9fa;
+  border-bottom: 1rpx solid #e0e0e0;
+}
+
+.rules-header .col {
+  font-size: 24rpx;
+  color: #666666;
+  font-weight: 600;
+}
+
+.rules-body {
+  padding: 0 24rpx;
+}
+
+.rule-row {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.rule-row:last-child {
+  border-bottom: none;
+}
+
+.col {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.col-type {
+  flex: 2;
+}
+
+.col-score {
+  flex: 1;
+  text-align: center;
+}
+
+.rule-input {
+  width: 100%;
+  height: 56rpx;
+  border: 1rpx solid #1a73e8;
+  border-radius: 8rpx;
+  text-align: center;
+  font-size: 26rpx;
+  padding: 0 8rpx;
+  box-sizing: border-box;
+}
+
+/* Action Buttons */
+.action-bar {
+  padding: 24rpx 0;
+}
+
+.btn {
+  padding: 24rpx 0;
+  text-align: center;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.btn-edit {
+  background-color: #1a73e8;
+  color: #ffffff;
+}
+
+.btn-edit:active {
+  opacity: 0.8;
+}
+
+.btn-group {
+  display: flex;
+  gap: 24rpx;
+}
+
+.btn-cancel {
+  flex: 1;
+  background-color: #f5f5f5;
+  color: #666666;
+}
+
+.btn-cancel:active {
+  background-color: #e0e0e0;
+}
+
+.btn-save {
+  flex: 1;
+  background-color: #1a73e8;
+  color: #ffffff;
+}
+
+.btn-save:active {
+  opacity: 0.8;
+}
+
+.empty-tip {
+  padding: 60rpx 0;
+  text-align: center;
+  color: #999999;
+  font-size: 28rpx;
+}
+
+/* No Auth */
+.no-auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.no-auth-text {
+  font-size: 32rpx;
+  color: #999999;
+}

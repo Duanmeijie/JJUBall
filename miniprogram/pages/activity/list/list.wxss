@@ -1,0 +1,160 @@
+.page-container {
+  min-height: 100vh;
+  background-color: #F5F5F8;
+  padding-bottom: 140rpx;
+}
+
+/* Filter Section */
+.filter-section {
+  background-color: #ffffff;
+  padding: 24rpx 0 16rpx;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+
+.status-tabs {
+  display: flex;
+  white-space: nowrap;
+  padding: 0 28rpx;
+  margin-bottom: 16rpx;
+}
+
+.tab-item {
+  display: inline-block;
+  padding: 14rpx 36rpx;
+  font-size: 26rpx;
+  color: #6B6B80;
+  border-radius: 24rpx;
+  margin-right: 16rpx;
+  background-color: #F5F5F8;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.tab-item.active {
+  background: linear-gradient(135deg, #D4363C, #FF6B35);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4rpx 16rpx rgba(212, 54, 60, 0.25);
+}
+
+/* Type Filter */
+.type-filter {
+  display: flex;
+  padding: 0 28rpx;
+  flex-wrap: wrap;
+}
+
+.type-item {
+  padding: 10rpx 28rpx;
+  font-size: 24rpx;
+  color: #6B6B80;
+  border-radius: 20rpx;
+  margin-right: 14rpx;
+  background-color: #F5F5F8;
+  border: 2rpx solid transparent;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.type-item.active {
+  background-color: rgba(212, 54, 60, 0.06);
+  color: #D4363C;
+  border-color: #D4363C;
+  font-weight: 600;
+}
+
+/* Activity List */
+.activity-list {
+  padding: 24rpx 28rpx;
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 200rpx;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  margin-bottom: 24rpx;
+  opacity: 0.6;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #9E9EB0;
+}
+
+/* Load More */
+.load-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40rpx 0;
+}
+
+.loading-more {
+  display: flex;
+  align-items: center;
+}
+
+.loading-spinner {
+  width: 36rpx;
+  height: 36rpx;
+  border: 4rpx solid #EDEDF0;
+  border-top-color: #D4363C;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-right: 14rpx;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 24rpx;
+  color: #9E9EB0;
+}
+
+.no-more-text {
+  font-size: 24rpx;
+  color: #CDCDD4;
+}
+
+/* FAB Button */
+.fab-button {
+  position: fixed;
+  right: 40rpx;
+  bottom: 100rpx;
+  background: linear-gradient(135deg, #D4363C, #FF6B35);
+  color: #ffffff;
+  padding: 26rpx 44rpx;
+  border-radius: 50rpx;
+  box-shadow: 0 8rpx 32rpx rgba(212, 54, 60, 0.35);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.fab-button:active {
+  transform: scale(0.93);
+}
+
+.fab-icon {
+  font-size: 32rpx;
+  margin-right: 8rpx;
+}
+
+.fab-text {
+  font-size: 28rpx;
+  font-weight: 600;
+}

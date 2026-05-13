@@ -1,0 +1,50 @@
+# ============================
+# WeChat Mini Program
+# ============================
+miniprogram/user.dat
+miniprogram/devtools.log
+miniprogram/dist/
+miniprogram/build/
+
+# ============================
+# WeChat DevTools
+# ============================
+project.private.config.json
+*.local.json
+
+# ============================
+# Node.js / Cloud Functions
+# ============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# ============================
+# Cloud Functions Deployment
+# ============================
+cloudfunctions/**/node_modules/
+
+# ============================
+# Environment & IDE
+# ============================
+.env
+.env.local
+.env.*.local
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ============================
+# Logs & Temporary Files
+# ============================
+logs/
+*.log
+tmp/
+temp/

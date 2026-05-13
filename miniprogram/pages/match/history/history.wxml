@@ -1,0 +1,49 @@
+<view class="page-container">
+  <!-- Season Filter -->
+  <view class="filter-bar">
+    <picker
+      mode="selector"
+      range="{{seasonList}}"
+      range-key="name"
+      value="{{seasonIndex}}"
+      bindchange="onSeasonChange"
+    >
+      <view class="season-filter">
+        <text class="filter-label">赛季：</text>
+        <text class="filter-value">{{seasonList.length > 0 ? seasonList[seasonIndex].name : '全部'}}</text>
+        <text class="filter-arrow">▼</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- Match List -->
+  <view class="match-list" wx:if="{{matchList.length > 0}}">
+    <match-item
+      wx:for="{{matchList}}"
+      wx:key="_id"
+      match="{{item}}"
+      currentUserId="{{currentUserId}}"
+      bindtap="goToDetail"
+      data-id="{{item._id}}"
+    />
+  </view>
+
+  <!-- Empty State -->
+  <view class="empty-state" wx:if="{{matchList.length === 0 && !loading}}">
+    <view class="empty-icon">🏸</view>
+    <text class="empty-text">暂无比赛记录</text>
+    <text class="empty-sub">参加比赛后记录将在此显示</text>
+  </view>
+
+  <!-- Load More -->
+  <view class="load-more" wx:if="{{matchList.length > 0}}">
+    <text class="load-more-text" wx:if="{{hasMore}}" bindtap="loadMore">加载更多</text>
+    <text class="load-more-text no-more" wx:else>没有更多了</text>
+  </view>
+
+  <!-- Loading -->
+  <view class="loading" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

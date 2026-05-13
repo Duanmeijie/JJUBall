@@ -1,0 +1,85 @@
+<view class="container" wx:if="{{authorized}}">
+  <!-- Activity Picker -->
+  <view class="form-section">
+    <view class="form-item">
+      <text class="form-label">选择活动</text>
+      <picker
+        mode="selector"
+        range="{{openActivities}}"
+        range-key="title"
+        value="{{selectedIndex}}"
+        bindchange="onActivityPick"
+        disabled="{{openActivities.length === 0}}"
+      >
+        <view class="picker-value">
+          <text wx:if="{{selectedActivity}}">{{selectedActivity.title}}</text>
+          <text wx:if="{{!selectedActivity}}" class="placeholder">{{openActivities.length > 0 ? '请选择活动' : '暂无可取消的活动'}}</text>
+          <text class="picker-arrow">></text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- Selected Activity Info -->
+  <view class="activity-info" wx:if="{{selectedActivity}}">
+    <view class="info-row">
+      <text class="info-label">活动名称</text>
+      <text class="info-value">{{selectedActivity.title}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">活动时间</text>
+      <text class="info-value">{{selectedActivity.formattedTime}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">报名人数</text>
+      <text class="info-value">{{selectedActivity.enrollCount}}人</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">活动地点</text>
+      <text class="info-value">{{selectedActivity.location}}</text>
+    </view>
+  </view>
+
+  <!-- Cancel Reason -->
+  <view class="form-section" wx:if="{{selectedActivity}}">
+    <view class="form-item-col">
+      <text class="form-label">取消原因</text>
+      <textarea
+        class="reason-textarea"
+        placeholder="请输入取消原因，如：暴雨天气，场地湿滑"
+        value="{{reason}}"
+        bindinput="onReasonInput"
+        maxlength="200"
+      ></textarea>
+      <text class="char-count">{{reason.length}}/200</text>
+    </view>
+  </view>
+
+  <!-- Notice -->
+  <view class="notice-box" wx:if="{{selectedActivity}}">
+    <text class="notice-text">天气取消不会扣除报名者信誉分</text>
+  </view>
+
+  <!-- Confirm Button -->
+  <view
+    class="cancel-btn {{(!selectedActivity || !reason || submitting) ? 'disabled' : ''}}"
+    bindtap="handleCancel"
+    wx:if="{{selectedActivity}}"
+  >
+    <text wx:if="{{!submitting}}">确认取消活动</text>
+    <text wx:if="{{submitting}}">处理中...</text>
+  </view>
+
+  <!-- Result -->
+  <view class="result-section" wx:if="{{result}}">
+    <view class="result-card">
+      <text class="result-title">活动已取消</text>
+      <text class="result-desc">已通知 {{result.notifiedCount}} 位报名用户</text>
+      <text class="result-reason">取消原因: {{result.reason}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="no-auth" wx:if="{{!authorized}}">
+  <text class="no-auth-text">无权访问此页面</text>
+</view>

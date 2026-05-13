@@ -1,0 +1,77 @@
+<view class="page-container">
+  <!-- Match Info Card -->
+  <view class="match-card" wx:if="{{match}}">
+    <!-- Players VS Section -->
+    <view class="players-section">
+      <!-- Player A -->
+      <view class="player-info {{match.scoreA > match.scoreB ? 'winner' : ''}}">
+        <image class="player-avatar" src="{{playerAInfo.avatarUrl || '/assets/default-avatar.png'}}" mode="aspectFill"></image>
+        <text class="player-name">{{playerAInfo.nickName || '选手A'}}</text>
+        <view class="winner-badge" wx:if="{{match.scoreA > match.scoreB}}">
+          <text>胜</text>
+        </view>
+      </view>
+
+      <!-- Score Display -->
+      <view class="score-display">
+        <text class="score score-a {{match.scoreA > match.scoreB ? 'highlight' : ''}}">{{match.scoreA}}</text>
+        <text class="score-separator">:</text>
+        <text class="score score-b {{match.scoreB > match.scoreA ? 'highlight' : ''}}">{{match.scoreB}}</text>
+      </view>
+
+      <!-- Player B -->
+      <view class="player-info {{match.scoreB > match.scoreA ? 'winner' : ''}}">
+        <image class="player-avatar" src="{{playerBInfo.avatarUrl || '/assets/default-avatar.png'}}" mode="aspectFill"></image>
+        <text class="player-name">{{playerBInfo.nickName || '选手B'}}</text>
+        <view class="winner-badge" wx:if="{{match.scoreB > match.scoreA}}">
+          <text>胜</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Match Details -->
+    <view class="detail-section">
+      <view class="detail-item">
+        <text class="detail-label">比赛类型</text>
+        <text class="detail-value">{{match.matchType}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">所属赛季</text>
+        <text class="detail-value">{{match.seasonName || '未知赛季'}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">裁判</text>
+        <text class="detail-value">{{match.refereeName || '系统'}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">比赛时间</text>
+        <text class="detail-value">{{match.formattedDate}}</text>
+      </view>
+    </view>
+
+    <!-- Score Changes -->
+    <view class="score-changes" wx:if="{{match.scoreChangeA !== undefined}}">
+      <view class="changes-title">积分变动</view>
+      <view class="changes-row">
+        <view class="change-item">
+          <text class="change-player">{{playerAInfo.nickName || '选手A'}}</text>
+          <text class="change-value {{match.scoreChangeA >= 0 ? 'positive' : 'negative'}}">
+            {{match.scoreChangeA >= 0 ? '+' : ''}}{{match.scoreChangeA}}
+          </text>
+        </view>
+        <view class="change-item">
+          <text class="change-player">{{playerBInfo.nickName || '选手B'}}</text>
+          <text class="change-value {{match.scoreChangeB >= 0 ? 'positive' : 'negative'}}">
+            {{match.scoreChangeB >= 0 ? '+' : ''}}{{match.scoreChangeB}}
+          </text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Loading State -->
+  <view class="loading" wx:if="{{!match}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

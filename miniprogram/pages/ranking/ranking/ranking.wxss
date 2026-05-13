@@ -1,0 +1,679 @@
+/* Page Container */
+.page-container {
+  min-height: 100vh;
+  background-color: #F5F5F8;
+  padding-bottom: 40rpx;
+  box-sizing: border-box;
+}
+
+/* ==================== Tab Switcher ==================== */
+.tab-switcher {
+  display: flex;
+  position: relative;
+  background-color: #FFFFFF;
+  padding: 0 40rpx;
+  box-shadow: 0 4rpx 24rpx rgba(0,0,0,0.06);
+}
+
+.tab-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32rpx 0;
+  position: relative;
+  z-index: 1;
+}
+
+.tab-text {
+  font-size: 30rpx;
+  color: #6B6B80;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.tab-item.active .tab-text {
+  color: #D4363C;
+  font-weight: 600;
+}
+
+.tab-indicator {
+  position: absolute;
+  bottom: 0;
+  width: 120rpx;
+  height: 6rpx;
+  background: linear-gradient(90deg, #D4363C, #FF6B35);
+  border-radius: 3rpx;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab-indicator.left {
+  left: calc(25% - 60rpx);
+}
+
+.tab-indicator.right {
+  left: calc(75% - 60rpx);
+}
+
+/* ==================== Tab Content ==================== */
+.tab-content {
+  padding: 24rpx 30rpx;
+}
+
+/* ==================== Season Selector ==================== */
+.season-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #FFFFFF;
+  border-radius: 28rpx;
+  padding: 28rpx 36rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 24rpx rgba(0,0,0,0.06);
+}
+
+.season-label {
+  font-size: 26rpx;
+  color: #6B6B80;
+}
+
+.season-name-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.season-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #2D2D3A;
+}
+
+.season-arrow {
+  font-size: 36rpx;
+  color: #D4363C;
+  margin-left: 12rpx;
+  font-weight: bold;
+}
+
+/* ==================== My Ranking Card ==================== */
+.my-ranking-card {
+  background: linear-gradient(135deg, #D4363C 0%, #FF6B35 100%);
+  border-radius: 28rpx;
+  padding: 40rpx;
+  margin-bottom: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8rpx 32rpx rgba(212, 54, 60, 0.25);
+}
+
+.my-ranking-card.empty {
+  background: #FFFFFF;
+  justify-content: center;
+  box-shadow: 0 4rpx 24rpx rgba(0,0,0,0.06);
+}
+
+.no-rank-text {
+  font-size: 28rpx;
+  color: #6B6B80;
+}
+
+.my-ranking-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.my-rank-pos {
+  display: flex;
+  align-items: baseline;
+}
+
+.my-rank-num {
+  font-size: 72rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.my-rank-suffix {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.8);
+  margin-left: 6rpx;
+}
+
+.my-rank-label {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 8rpx;
+}
+
+.my-ranking-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.my-score-wrap {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 12rpx;
+}
+
+.my-score-value {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.my-score-unit {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 8rpx;
+}
+
+.my-badge {
+  padding: 8rpx 24rpx;
+  border-radius: 24rpx;
+}
+
+.my-badge-text {
+  font-size: 24rpx;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+/* ==================== Podium Section ==================== */
+.podium-section {
+  background-color: #FFFFFF;
+  border-radius: 28rpx;
+  padding: 36rpx 24rpx 0;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 24rpx rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+.podium-title {
+  text-align: center;
+  margin-bottom: 32rpx;
+}
+
+.podium-title-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #2D2D3A;
+}
+
+.podium-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 20rpx;
+}
+
+.podium-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.podium-medal {
+  font-size: 48rpx;
+  margin-bottom: 12rpx;
+}
+
+.podium-avatar {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F5F5F8;
+  margin-bottom: 12rpx;
+  border: 4rpx solid transparent;
+}
+
+.podium-item.first .podium-avatar {
+  width: 104rpx;
+  height: 104rpx;
+}
+
+.gold-border {
+  border-color: #F5A623;
+  box-shadow: 0 4rpx 16rpx rgba(245, 166, 35, 0.3);
+}
+
+.silver-border {
+  border-color: #9E9EB0;
+  box-shadow: 0 4rpx 16rpx rgba(158, 158, 176, 0.3);
+}
+
+.bronze-border {
+  border-color: #CD7F32;
+  box-shadow: 0 4rpx 16rpx rgba(205, 127, 50, 0.3);
+}
+
+.avatar-letter {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #2D2D3A;
+}
+
+.podium-item.first .avatar-letter {
+  font-size: 42rpx;
+}
+
+.podium-nick {
+  font-size: 24rpx;
+  color: #2D2D3A;
+  font-weight: 500;
+  margin-bottom: 8rpx;
+  max-width: 140rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.podium-score {
+  font-size: 22rpx;
+  color: #6B6B80;
+  margin-bottom: 16rpx;
+}
+
+.podium-pillar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16rpx 16rpx 0 0;
+}
+
+.pillar-rank {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.gold-pillar {
+  background: linear-gradient(180deg, #F5A623 0%, #E8960F 100%);
+  height: 140rpx;
+}
+
+.silver-pillar {
+  background: linear-gradient(180deg, #C0C0C8 0%, #9E9EB0 100%);
+  height: 100rpx;
+}
+
+.bronze-pillar {
+  background: linear-gradient(180deg, #D4956A 0%, #CD7F32 100%);
+  height: 76rpx;
+}
+
+/* ==================== Ranking List ==================== */
+.ranking-list {
+  background-color: #FFFFFF;
+  border-radius: 28rpx;
+  padding: 16rpx 0;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 24rpx rgba(0,0,0,0.06);
+}
+
+.ranking-row {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 30rpx;
+  border-bottom: 1rpx solid #F5F5F8;
+}
+
+.ranking-row:last-child {
+  border-bottom: none;
+}
+
+.rank-num-col {
+  width: 60rpx;
+  text-align: center;
+}
+
+.rank-num {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #6B6B80;
+}
+
+.rank-avatar-col {
+  margin-left: 16rpx;
+}
+
+.rank-avatar {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  background-color: #F5F5F8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2rpx solid #E8E8EE;
+}
+
+.avatar-letter-sm {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #2D2D3A;
+}
+
+.rank-info-col {
+  flex: 1;
+  margin-left: 20rpx;
+}
+
+.rank-nick {
+  font-size: 28rpx;
+  color: #2D2D3A;
+  font-weight: 500;
+}
+
+.rank-score-col {
+  display: flex;
+  align-items: baseline;
+  margin-right: 16rpx;
+}
+
+.rank-score-text {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #D4363C;
+}
+
+.rank-score-unit {
+  font-size: 22rpx;
+  color: #6B6B80;
+  margin-left: 4rpx;
+}
+
+.rank-badge-col {
+  min-width: 80rpx;
+}
+
+.rank-badge {
+  padding: 6rpx 16rpx;
+  border-radius: 16rpx;
+  text-align: center;
+}
+
+.rank-badge-text {
+  font-size: 22rpx;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+/* ==================== Load More ==================== */
+.load-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24rpx 0;
+}
+
+.load-more-btn {
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 20rpx 60rpx;
+  box-shadow: 0 4rpx 24rpx rgba(0,0,0,0.06);
+}
+
+.load-more-text {
+  font-size: 26rpx;
+  color: #D4363C;
+  font-weight: 500;
+}
+
+.no-more-text {
+  font-size: 24rpx;
+  color: #9E9EB0;
+}
+
+/* ==================== Empty State ==================== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 160rpx 60rpx;
+}
+
+.empty-icon {
+  font-size: 100rpx;
+  margin-bottom: 24rpx;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #2D2D3A;
+  font-weight: 500;
+  margin-bottom: 12rpx;
+}
+
+.empty-sub {
+  font-size: 26rpx;
+  color: #6B6B80;
+}
+
+/* ==================== Credit Tab ==================== */
+.credit-header {
+  background-color: #FFFFFF;
+  border-radius: 28rpx;
+  padding: 28rpx 36rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 24rpx rgba(0,0,0,0.06);
+  text-align: center;
+}
+
+.credit-header-text {
+  font-size: 26rpx;
+  color: #6B6B80;
+  line-height: 1.6;
+}
+
+/* Credit Section */
+.credit-section {
+  background-color: #FFFFFF;
+  border-radius: 28rpx;
+  margin-bottom: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 24rpx rgba(0,0,0,0.06);
+}
+
+.credit-section-header {
+  padding: 28rpx 36rpx 20rpx;
+  border-bottom: 1rpx solid #F5F5F8;
+}
+
+.credit-section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.red-title {
+  color: #2D9B5C;
+}
+
+.black-title {
+  color: #D4363C;
+}
+
+.credit-list {
+  padding: 8rpx 0;
+}
+
+.credit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 36rpx;
+  border-bottom: 1rpx solid #F9F9FB;
+}
+
+.credit-row:last-child {
+  border-bottom: none;
+}
+
+.credit-row-left {
+  display: flex;
+  align-items: center;
+}
+
+.credit-prefix {
+  font-size: 28rpx;
+  margin-right: 16rpx;
+}
+
+.credit-nick {
+  font-size: 28rpx;
+  color: #2D2D3A;
+  font-weight: 500;
+}
+
+.credit-score-wrap {
+  display: flex;
+  align-items: baseline;
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+}
+
+.green-score {
+  background-color: rgba(45, 155, 92, 0.08);
+}
+
+.red-score {
+  background-color: rgba(212, 54, 60, 0.08);
+}
+
+.credit-score-value {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.green-score .credit-score-value {
+  color: #2D9B5C;
+}
+
+.red-score .credit-score-value {
+  color: #D4363C;
+}
+
+.credit-score-unit {
+  font-size: 22rpx;
+  margin-left: 4rpx;
+}
+
+.green-score .credit-score-unit {
+  color: #2D9B5C;
+}
+
+.red-score .credit-score-unit {
+  color: #D4363C;
+}
+
+.green-row {
+  border-left: 6rpx solid #2D9B5C;
+}
+
+.red-row {
+  border-left: 6rpx solid #D4363C;
+}
+
+.credit-empty {
+  padding: 48rpx 36rpx;
+  text-align: center;
+}
+
+.credit-empty-text {
+  font-size: 26rpx;
+  color: #9E9EB0;
+}
+
+/* ==================== Rules Reminder ==================== */
+.credit-rules {
+  background-color: #FFFFFF;
+  border-radius: 28rpx;
+  padding: 32rpx 36rpx;
+  box-shadow: 0 4rpx 24rpx rgba(0,0,0,0.06);
+}
+
+.rules-title-wrap {
+  margin-bottom: 24rpx;
+}
+
+.rules-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #2D2D3A;
+}
+
+.rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.rule-item {
+  display: flex;
+  align-items: center;
+}
+
+.rule-tag {
+  font-size: 22rpx;
+  font-weight: 600;
+  padding: 6rpx 16rpx;
+  border-radius: 12rpx;
+  margin-right: 20rpx;
+  min-width: 64rpx;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.minus-tag {
+  background-color: #F5A623;
+}
+
+.danger-tag {
+  background-color: #D4363C;
+}
+
+.safe-tag {
+  background-color: #2D9B5C;
+}
+
+.rule-text {
+  font-size: 26rpx;
+  color: #6B6B80;
+}
+
+/* ==================== Loading ==================== */
+.loading-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 0;
+}
+
+.loading-spinner {
+  width: 48rpx;
+  height: 48rpx;
+  border: 4rpx solid #F5F5F8;
+  border-top-color: #D4363C;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 16rpx;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  font-size: 26rpx;
+  color: #6B6B80;
+}

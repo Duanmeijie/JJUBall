@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "比赛历史",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "match-item": "../../../components/match-item/match-item"
+  }
+}

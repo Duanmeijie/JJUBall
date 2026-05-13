@@ -1,0 +1,71 @@
+<view class="page-container">
+  <!-- Current Season Card -->
+  <view class="current-season-card" wx:if="{{currentSeason}}">
+    <view class="season-badge active">当前赛季</view>
+    <text class="season-card-name">{{currentSeason.name}}</text>
+    <view class="season-date-range">
+      <text class="date-text">{{currentSeason.startDate}} ~ {{currentSeason.endDate}}</text>
+    </view>
+    <view class="season-status">
+      <view class="status-dot active"></view>
+      <text class="status-text">进行中</text>
+    </view>
+    <button class="view-ranking-btn" bindtap="goToRanking" data-id="{{currentSeason._id}}">
+      查看排行
+    </button>
+  </view>
+
+  <!-- No Current Season -->
+  <view class="current-season-card empty" wx:if="{{!currentSeason && !loading}}">
+    <text class="empty-season-text">暂无进行中的赛季</text>
+  </view>
+
+  <!-- Admin Create Button -->
+  <view class="admin-section" wx:if="{{isAdmin}}">
+    <button class="create-season-btn" bindtap="createSeason">
+      创建赛季
+    </button>
+  </view>
+
+  <!-- Historical Seasons -->
+  <view class="history-section" wx:if="{{historicalSeasons.length > 0}}">
+    <view class="section-header">
+      <text class="section-title">历史赛季</text>
+    </view>
+
+    <view class="season-list">
+      <view
+        class="season-item"
+        wx:for="{{historicalSeasons}}"
+        wx:key="_id"
+        bindtap="goToRanking"
+        data-id="{{item._id}}"
+      >
+        <view class="season-item-left">
+          <text class="season-item-name">{{item.name}}</text>
+          <text class="season-item-date">{{item.startDate}} ~ {{item.endDate}}</text>
+        </view>
+        <view class="season-item-right">
+          <view class="season-archived-badge" wx:if="{{item.archived}}">
+            <text>已归档</text>
+          </view>
+          <view class="season-ended-badge" wx:else>
+            <text>已结束</text>
+          </view>
+          <text class="item-arrow">▶</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Empty Historical -->
+  <view class="empty-history" wx:if="{{historicalSeasons.length === 0 && currentSeason && !loading}}">
+    <text class="empty-history-text">暂无历史赛季</text>
+  </view>
+
+  <!-- Loading -->
+  <view class="loading" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

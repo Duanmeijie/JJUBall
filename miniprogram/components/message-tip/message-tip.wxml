@@ -1,0 +1,6 @@
+<!-- components/message-tip/message-tip.wxml -->
+<view class="message-tip" wx:if="{{count > 0}}">
+  <view class="tip-badge {{count > 99 ? 'badge-large' : ''}}">
+    <text class="tip-count">{{count > 99 ? '99+' : count}}</text>
+  </view>
+</view>

@@ -1,0 +1,93 @@
+<view class="container" wx:if="{{authorized}}">
+  <!-- Export Type Picker -->
+  <view class="form-section">
+    <view class="form-item">
+      <text class="form-label">导出类型</text>
+      <picker
+        mode="selector"
+        range="{{exportTypes}}"
+        range-key="name"
+        value="{{exportTypeIndex}}"
+        bindchange="onTypePick"
+      >
+        <view class="picker-value">
+          <text>{{exportTypes[exportTypeIndex].name}}</text>
+          <text class="picker-arrow">></text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- Start Date -->
+    <view class="form-item">
+      <text class="form-label">开始日期</text>
+      <picker
+        mode="date"
+        value="{{startDate}}"
+        bindchange="onStartDatePick"
+      >
+        <view class="picker-value">
+          <text>{{startDate || '请选择开始日期'}}</text>
+          <text class="picker-arrow">></text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- End Date -->
+    <view class="form-item">
+      <text class="form-label">结束日期</text>
+      <picker
+        mode="date"
+        value="{{endDate}}"
+        start="{{startDate}}"
+        bindchange="onEndDatePick"
+      >
+        <view class="picker-value">
+          <text>{{endDate || '请选择结束日期'}}</text>
+          <text class="picker-arrow">></text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- Export Button -->
+  <view class="export-btn {{exporting ? 'disabled' : ''}}" bindtap="handleExport">
+    <text wx:if="{{!exporting}}">开始导出</text>
+    <text wx:if="{{exporting}}">导出中...</text>
+  </view>
+
+  <!-- Download Result -->
+  <view class="result-section" wx:if="{{downloadUrl}}">
+    <view class="result-card">
+      <text class="result-title">导出完成</text>
+      <text class="result-desc">文件已生成，点击下方链接下载或复制链接</text>
+      <view class="result-actions">
+        <view class="result-btn" bindtap="onCopyLink">
+          <text>复制链接</text>
+        </view>
+        <view class="result-btn result-btn-primary" bindtap="onOpenLink">
+          <text>打开链接</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Export History -->
+  <view class="history-section" wx:if="{{exportHistory.length > 0}}">
+    <text class="section-title">导出历史</text>
+    <view class="history-list">
+      <view class="history-item" wx:for="{{exportHistory}}" wx:key="id">
+        <view class="history-info">
+          <text class="history-type">{{item.typeName}}</text>
+          <text class="history-time">{{item.time}}</text>
+        </view>
+        <view class="history-link" bindtap="onHistoryTap" data-url="{{item.url}}">
+          <text>下载</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="no-auth" wx:if="{{!authorized}}">
+  <text class="no-auth-text">无权访问此页面</text>
+</view>

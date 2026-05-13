@@ -1,0 +1,141 @@
+<!-- pages/index/index.wxml -->
+<view class="page-container">
+  <!-- Header Banner -->
+  <view class="header-banner">
+    <view class="banner-inner">
+      <view class="banner-left">
+        <text class="greeting-text">{{greeting}}，{{userInfo.nickName || '同学'}}</text>
+        <text class="subtitle-text">九江学院乒乓球协会</text>
+      </view>
+      <view class="banner-right" bindtap="goToMessages">
+        <view class="bell-icon">
+          <text class="bell-emoji">🔔</text>
+          <view class="unread-badge" wx:if="{{unreadCount > 0}}">
+            <text class="badge-text">{{unreadCount > 99 ? '99+' : unreadCount}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- My Stats Card -->
+  <view class="stats-card">
+    <view class="stats-row">
+      <view class="stat-item">
+        <text class="stat-value">{{currentScore || 0}}</text>
+        <text class="stat-label">当前积分</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-value">{{creditScore || 100}}</text>
+        <text class="stat-label">信誉分</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-value stat-rank" style="color: {{rankColor}}">{{rank || '青铜'}}</text>
+        <text class="stat-label">段位</text>
+      </view>
+    </view>
+    <view class="winrate-bar" wx:if="{{winRate !== '--'}}">
+      <view class="winrate-label">
+        <text class="winrate-text">胜率</text>
+        <text class="winrate-value">{{winRate}}</text>
+      </view>
+      <view class="winrate-track">
+        <view class="winrate-fill" style="width: {{winRatePercent}}%"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Quick Actions Grid -->
+  <view class="section quick-actions-section">
+    <view class="action-grid">
+      <view class="action-item" bindtap="goToActivityList">
+        <view class="action-emoji-wrapper action-bg-1">
+          <text class="action-emoji">🏓</text>
+        </view>
+        <text class="action-label">约球大厅</text>
+      </view>
+      <view class="action-item" bindtap="goToMatchHistory">
+        <view class="action-emoji-wrapper action-bg-2">
+          <text class="action-emoji">🏆</text>
+        </view>
+        <text class="action-label">赛事中心</text>
+      </view>
+      <view class="action-item" bindtap="goToRanking">
+        <view class="action-emoji-wrapper action-bg-3">
+          <text class="action-emoji">📊</text>
+        </view>
+        <text class="action-label">积分排行</text>
+      </view>
+      <view class="action-item" bindtap="goToProfile">
+        <view class="action-emoji-wrapper action-bg-4">
+          <text class="action-emoji">👤</text>
+        </view>
+        <text class="action-label">个人中心</text>
+      </view>
+      <view class="action-item" bindtap="goToAdmin" wx:if="{{isAdmin}}">
+        <view class="action-emoji-wrapper action-bg-5">
+          <text class="action-emoji">⚙️</text>
+        </view>
+        <text class="action-label">管理后台</text>
+      </view>
+      <view class="action-item" bindtap="goToRecordScore" wx:if="{{isRefereeOrAdmin}}">
+        <view class="action-emoji-wrapper action-bg-6">
+          <text class="action-emoji">✏️</text>
+        </view>
+        <text class="action-label">录入成绩</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 赛季积分榜 Preview -->
+  <view class="section">
+    <view class="ranking-card">
+      <view class="card-header">
+        <text class="card-title">赛季积分榜</text>
+        <view class="card-more" bindtap="goToRanking">
+          <text class="more-link">查看全部 ></text>
+        </view>
+      </view>
+      <view class="top3-list" wx:if="{{topRanking.length > 0}}">
+        <view class="top3-item" wx:for="{{topRanking}}" wx:key="_id">
+          <view class="top3-left">
+            <text class="rank-medal">{{index === 0 ? '🥇' : (index === 1 ? '🥈' : '🥉')}}</text>
+            <view class="avatar-circle avatar-circle-{{index}}">
+              <text class="avatar-initial">{{item.nickName[0] || '?'}}</text>
+            </view>
+            <text class="top3-name">{{item.nickName}}</text>
+          </view>
+          <view class="top3-right">
+            <text class="top3-score">{{item.totalScore || item.score || 0}}</text>
+            <text class="top3-unit">分</text>
+          </view>
+        </view>
+      </view>
+      <view class="empty-state" wx:if="{{!loading && topRanking.length === 0}}">
+        <text class="empty-text">暂无排行数据</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 近期活动 Section -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">近期活动</text>
+      <view class="section-more" bindtap="goToActivityList">
+        <text class="more-link">查看全部 ></text>
+      </view>
+    </view>
+    <view class="activity-list" wx:if="{{activities.length > 0}}">
+      <activity-card
+        wx:for="{{activities}}"
+        wx:key="_id"
+        activity="{{item}}"
+      ></activity-card>
+    </view>
+    <view class="empty-state" wx:if="{{!loading && activities.length === 0}}">
+      <text class="empty-text">暂无近期活动</text>
+    </view>
+  </view>
+</view>

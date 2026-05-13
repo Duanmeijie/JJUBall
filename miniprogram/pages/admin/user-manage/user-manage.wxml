@@ -1,0 +1,53 @@
+<view class="container" wx:if="{{authorized}}">
+  <!-- Search Bar -->
+  <view class="search-bar">
+    <input
+      class="search-input"
+      placeholder="搜索用户（昵称或学号）"
+      value="{{searchKey}}"
+      bindinput="onSearchInput"
+      bindconfirm="onSearch"
+    />
+    <view class="search-btn" bindtap="onSearch">搜索</view>
+  </view>
+
+  <!-- User List -->
+  <view class="user-list">
+    <view
+      class="user-item"
+      wx:for="{{userList}}"
+      wx:key="_id"
+      bindtap="onUserTap"
+      data-index="{{index}}"
+    >
+      <image class="user-avatar" src="{{item.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+      <view class="user-info">
+        <text class="user-nickname">{{item.nickname}}</text>
+        <text class="user-student-id">学号: {{item.studentId || '未绑定'}}</text>
+      </view>
+      <view class="role-badge role-{{item.role}}">
+        <text>{{item.roleText}}</text>
+      </view>
+    </view>
+
+    <!-- Empty State -->
+    <view class="empty-tip" wx:if="{{userList.length === 0 && !loading}}">
+      <text>暂无用户数据</text>
+    </view>
+
+    <!-- Load More -->
+    <view class="load-more" wx:if="{{hasMore}}" bindtap="loadMore">
+      <text wx:if="{{!loading}}">加载更多</text>
+      <text wx:if="{{loading}}">加载中...</text>
+    </view>
+
+    <!-- No More -->
+    <view class="no-more" wx:if="{{!hasMore && userList.length > 0}}">
+      <text>没有更多了</text>
+    </view>
+  </view>
+</view>
+
+<view class="no-auth" wx:if="{{!authorized}}">
+  <text class="no-auth-text">无权访问此页面</text>
+</view>

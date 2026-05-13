@@ -1,0 +1,132 @@
+<view class="page-container">
+  <!-- Loading State -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <block wx:if="{{!loading && activity}}">
+    <!-- Hero Header -->
+    <view class="hero-header hero-{{activity.type}}">
+      <view class="hero-content">
+        <view class="hero-badges">
+          <view class="type-badge type-badge-{{activity.type}}">{{activity.typeName}}</view>
+          <view class="status-badge status-badge-{{activity.status}}">{{activity.statusName}}</view>
+        </view>
+        <view class="hero-title">{{activity.title}}</view>
+      </view>
+    </view>
+
+    <!-- Weather Cancel Warning Banner -->
+    <view class="weather-banner" wx:if="{{activity.weatherCancelled}}">
+      <text class="weather-emoji">⚠️</text>
+      <text class="weather-text">本次活动因天气原因已取消</text>
+    </view>
+
+    <!-- Info Cards Section -->
+    <view class="info-cards">
+      <!-- Location Card -->
+      <view class="info-card">
+        <text class="info-card-emoji">📍</text>
+        <view class="info-card-content">
+          <text class="info-card-label">活动地点</text>
+          <text class="info-card-value">{{activity.location}}</text>
+        </view>
+      </view>
+
+      <!-- Time Card -->
+      <view class="info-card">
+        <text class="info-card-emoji">🕐</text>
+        <view class="info-card-content">
+          <text class="info-card-label">活动时间</text>
+          <text class="info-card-value">{{activity.startTimeFormatted}} ~ {{activity.endTimeFormatted}}</text>
+        </view>
+      </view>
+
+      <!-- Enrollment Card with Progress Bar -->
+      <view class="info-card enrollment-card">
+        <text class="info-card-emoji">👥</text>
+        <view class="info-card-content">
+          <text class="info-card-label">报名人数</text>
+          <view class="enrollment-detail">
+            <view class="enrollment-progress-row">
+              <view class="enrollment-bar-bg">
+                <view class="enrollment-bar-fill" style="width: {{enrollPercent}}%"></view>
+              </view>
+              <text class="enrollment-percent">{{enrollPercent}}%</text>
+            </view>
+            <text class="enrollment-count-text">已报名 {{activity.currentCount}}/{{activity.maxCount}} 人</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 天气容错 Notice Section -->
+    <view class="weather-tolerance-notice" wx:if="{{activity.status === 'open'}}">
+      <view class="notice-icon-circle">✓</view>
+      <text class="notice-content">本活动支持天气容错，如因天气取消不影响信誉分</text>
+    </view>
+
+    <!-- Signup List Section -->
+    <view class="signup-section">
+      <view class="section-header">
+        <text class="section-title">报名名单</text>
+        <text class="section-count">{{signupList.length}}人</text>
+      </view>
+
+      <view class="signup-grid" wx:if="{{signupList.length > 0}}">
+        <view class="signup-item" wx:for="{{signupList}}" wx:key="_id">
+          <view class="avatar-wrapper">
+            <image
+              wx:if="{{item.avatarUrl}}"
+              class="user-avatar"
+              src="{{item.avatarUrl}}"
+              mode="aspectFill"
+            />
+            <view wx:else class="avatar-placeholder">
+              <text class="avatar-initial">{{item.nickname ? item.nickname[0] : '?'}}</text>
+            </view>
+          </view>
+          <text class="user-nickname">{{item.nickname || '匿名用户'}}</text>
+        </view>
+      </view>
+
+      <view class="signup-empty" wx:else>
+        <text class="signup-empty-text">暂无报名，快来成为第一个吧</text>
+      </view>
+    </view>
+
+    <!-- Bottom spacer for fixed action bar -->
+    <view class="bottom-spacer"></view>
+
+    <!-- Bottom Fixed Action Bar -->
+    <view class="action-bar">
+      <view class="action-bar-inner">
+        <!-- Open for signup and user not signed up -->
+        <button
+          wx:if="{{activity.status === 'open' && !isSignedUp}}"
+          class="action-btn btn-signup"
+          bindtap="handleSignup"
+          disabled="{{submitting}}"
+          loading="{{submitting}}"
+        >立即报名</button>
+
+        <!-- User is already signed up -->
+        <button
+          wx:elif="{{activity.status === 'open' && isSignedUp}}"
+          class="action-btn btn-cancel"
+          bindtap="handleCancelSignup"
+          disabled="{{submitting}}"
+          loading="{{submitting}}"
+        >取消报名</button>
+
+        <!-- Activity closed/cancelled/completed -->
+        <button
+          wx:else
+          class="action-btn btn-disabled"
+          disabled
+        >{{activity.status === 'cancelled' ? '活动已取消' : activity.status === 'closed' ? '报名已满' : '活动已结束'}}</button>
+      </view>
+    </view>
+  </block>
+</view>

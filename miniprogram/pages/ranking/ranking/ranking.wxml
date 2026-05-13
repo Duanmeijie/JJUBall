@@ -1,0 +1,214 @@
+<view class="page-container">
+  <!-- Tab Switcher -->
+  <view class="tab-switcher">
+    <view class="tab-item {{activeTab === 'score' ? 'active' : ''}}" bindtap="switchTab" data-tab="score">
+      <text class="tab-text">积分排行</text>
+    </view>
+    <view class="tab-item {{activeTab === 'credit' ? 'active' : ''}}" bindtap="switchTab" data-tab="credit">
+      <text class="tab-text">信誉红黑榜</text>
+    </view>
+    <view class="tab-indicator {{activeTab === 'credit' ? 'right' : 'left'}}"></view>
+  </view>
+
+  <!-- Score Ranking Tab -->
+  <view class="tab-content" wx:if="{{activeTab === 'score'}}">
+    <!-- Season Selector -->
+    <view class="season-selector" bindtap="goToSeason">
+      <text class="season-label">当前赛季</text>
+      <view class="season-name-wrap">
+        <text class="season-name">{{currentSeason.name || '未知赛季'}}</text>
+        <text class="season-arrow">›</text>
+      </view>
+    </view>
+
+    <!-- My Ranking Card -->
+    <view class="my-ranking-card" wx:if="{{myRanking}}">
+      <view class="my-ranking-left">
+        <view class="my-rank-pos">
+          <text class="my-rank-num">{{myRanking.rank}}</text>
+          <text class="my-rank-suffix">名</text>
+        </view>
+        <text class="my-rank-label">我的排名</text>
+      </view>
+      <view class="my-ranking-right">
+        <view class="my-score-wrap">
+          <text class="my-score-value">{{myRanking.score}}</text>
+          <text class="my-score-unit">积分</text>
+        </view>
+        <view class="my-badge" style="background-color: {{myRanking.rankColor}}">
+          <text class="my-badge-text">{{myRanking.rankTitle}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- No Ranking -->
+    <view class="my-ranking-card empty" wx:if="{{!myRanking && !loading}}">
+      <text class="no-rank-text">暂无排名，参加比赛后获得排名</text>
+    </view>
+
+    <!-- Top 3 Podium -->
+    <view class="podium-section" wx:if="{{rankingList.length >= 3}}">
+      <view class="podium-title">
+        <text class="podium-title-text">🏆 荣耀殿堂</text>
+      </view>
+      <view class="podium-container">
+        <!-- 2nd Place (Left) -->
+        <view class="podium-item second">
+          <text class="podium-medal">🥈</text>
+          <view class="podium-avatar silver-border">
+            <text class="avatar-letter">{{rankingList[1].nickName[0] || '?'}}</text>
+          </view>
+          <text class="podium-nick">{{rankingList[1].nickName}}</text>
+          <text class="podium-score">{{rankingList[1].score}}分</text>
+          <view class="podium-pillar silver-pillar">
+            <text class="pillar-rank">2</text>
+          </view>
+        </view>
+        <!-- 1st Place (Center) -->
+        <view class="podium-item first">
+          <text class="podium-medal">🥇</text>
+          <view class="podium-avatar gold-border">
+            <text class="avatar-letter">{{rankingList[0].nickName[0] || '?'}}</text>
+          </view>
+          <text class="podium-nick">{{rankingList[0].nickName}}</text>
+          <text class="podium-score">{{rankingList[0].score}}分</text>
+          <view class="podium-pillar gold-pillar">
+            <text class="pillar-rank">1</text>
+          </view>
+        </view>
+        <!-- 3rd Place (Right) -->
+        <view class="podium-item third">
+          <text class="podium-medal">🥉</text>
+          <view class="podium-avatar bronze-border">
+            <text class="avatar-letter">{{rankingList[2].nickName[0] || '?'}}</text>
+          </view>
+          <text class="podium-nick">{{rankingList[2].nickName}}</text>
+          <text class="podium-score">{{rankingList[2].score}}分</text>
+          <view class="podium-pillar bronze-pillar">
+            <text class="pillar-rank">3</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Full Ranking List (from #4) -->
+    <view class="ranking-list" wx:if="{{rankingList.length > 3}}">
+      <view class="ranking-row" wx:for="{{rankingList}}" wx:key="_id" wx:if="{{index >= 3}}">
+        <view class="rank-num-col">
+          <text class="rank-num">{{item.rank}}</text>
+        </view>
+        <view class="rank-avatar-col">
+          <view class="rank-avatar">
+            <text class="avatar-letter-sm">{{item.nickName[0] || '?'}}</text>
+          </view>
+        </view>
+        <view class="rank-info-col">
+          <text class="rank-nick">{{item.nickName}}</text>
+        </view>
+        <view class="rank-score-col">
+          <text class="rank-score-text">{{item.score}}</text>
+          <text class="rank-score-unit">分</text>
+        </view>
+        <view class="rank-badge-col">
+          <view class="rank-badge" style="background-color: {{item.rankColor}}">
+            <text class="rank-badge-text">{{item.rankTitle}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Load More -->
+    <view class="load-more" wx:if="{{rankingList.length > 0}}">
+      <view class="load-more-btn" wx:if="{{hasMore}}" bindtap="loadMore">
+        <text class="load-more-text">加载更多</text>
+      </view>
+      <text class="no-more-text" wx:else>— 已经到底了 —</text>
+    </view>
+
+    <!-- Empty State -->
+    <view class="empty-state" wx:if="{{rankingList.length === 0 && !loading}}">
+      <view class="empty-icon">🏓</view>
+      <text class="empty-text">暂无排行数据</text>
+      <text class="empty-sub">参加比赛后数据将在此显示</text>
+    </view>
+  </view>
+
+  <!-- Credit Ranking Tab -->
+  <view class="tab-content" wx:if="{{activeTab === 'credit'}}">
+    <!-- Header Explanation -->
+    <view class="credit-header">
+      <text class="credit-header-text">信誉分反映会员的守约情况，初始100分</text>
+    </view>
+
+    <!-- Red Board (Top 5 highest credit scores) -->
+    <view class="credit-section red-board">
+      <view class="credit-section-header">
+        <text class="credit-section-title red-title">🌟 红榜 · 守信之星</text>
+      </view>
+      <view class="credit-list" wx:if="{{creditRedList.length > 0}}">
+        <view class="credit-row green-row" wx:for="{{creditRedList}}" wx:key="_id">
+          <view class="credit-row-left">
+            <text class="credit-prefix green-prefix">🌟</text>
+            <text class="credit-nick">{{item.nickName}}</text>
+          </view>
+          <view class="credit-score-wrap green-score">
+            <text class="credit-score-value">{{item.creditScore}}</text>
+            <text class="credit-score-unit">分</text>
+          </view>
+        </view>
+      </view>
+      <view class="credit-empty" wx:else>
+        <text class="credit-empty-text">暂无数据</text>
+      </view>
+    </view>
+
+    <!-- Black Board (credit score < 80) -->
+    <view class="credit-section black-board">
+      <view class="credit-section-header">
+        <text class="credit-section-title black-title">⚠️ 黑榜 · 失信名单</text>
+      </view>
+      <view class="credit-list" wx:if="{{creditBlackList.length > 0}}">
+        <view class="credit-row red-row" wx:for="{{creditBlackList}}" wx:key="_id">
+          <view class="credit-row-left">
+            <text class="credit-prefix red-prefix">⚠️</text>
+            <text class="credit-nick">{{item.nickName}}</text>
+          </view>
+          <view class="credit-score-wrap red-score">
+            <text class="credit-score-value">{{item.creditScore}}</text>
+            <text class="credit-score-unit">分</text>
+          </view>
+        </view>
+      </view>
+      <view class="credit-empty" wx:else>
+        <text class="credit-empty-text">暂无失信人员，继续保持 👍</text>
+      </view>
+    </view>
+
+    <!-- Rules Reminder -->
+    <view class="credit-rules">
+      <view class="rules-title-wrap">
+        <text class="rules-title">📋 信誉规则</text>
+      </view>
+      <view class="rules-list">
+        <view class="rule-item">
+          <text class="rule-tag minus-tag">-10</text>
+          <text class="rule-text">临时取消报名</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-tag danger-tag">-20</text>
+          <text class="rule-text">无故缺席活动</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-tag safe-tag">不扣</text>
+          <text class="rule-text">天气原因取消</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Loading -->
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

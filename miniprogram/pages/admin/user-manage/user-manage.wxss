@@ -1,0 +1,143 @@
+.container {
+  padding: 24rpx;
+  background-color: #f5f6fa;
+  min-height: 100vh;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 12rpx 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.search-input {
+  flex: 1;
+  height: 64rpx;
+  font-size: 28rpx;
+  padding: 0 16rpx;
+}
+
+.search-btn {
+  padding: 12rpx 28rpx;
+  background-color: #1a73e8;
+  color: #ffffff;
+  font-size: 26rpx;
+  border-radius: 8rpx;
+  white-space: nowrap;
+}
+
+.search-btn:active {
+  opacity: 0.8;
+}
+
+/* User List */
+.user-list {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.user-item:last-child {
+  border-bottom: none;
+}
+
+.user-item:active {
+  background-color: #f8f9fa;
+}
+
+.user-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  background-color: #e0e0e0;
+}
+
+.user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-nickname {
+  font-size: 30rpx;
+  color: #333333;
+  font-weight: 500;
+  margin-bottom: 6rpx;
+}
+
+.user-student-id {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+/* Role Badges */
+.role-badge {
+  padding: 6rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.role-member {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.role-referee {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+.role-admin {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+/* Load More / Empty */
+.load-more {
+  padding: 32rpx 0;
+  text-align: center;
+  color: #1a73e8;
+  font-size: 26rpx;
+}
+
+.no-more {
+  padding: 32rpx 0;
+  text-align: center;
+  color: #cccccc;
+  font-size: 24rpx;
+}
+
+.empty-tip {
+  padding: 80rpx 0;
+  text-align: center;
+  color: #999999;
+  font-size: 28rpx;
+}
+
+/* No Auth */
+.no-auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.no-auth-text {
+  font-size: 32rpx;
+  color: #999999;
+}

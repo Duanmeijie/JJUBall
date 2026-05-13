@@ -1,0 +1,419 @@
+/* pages/activity/detail/detail.wxss */
+/* "国球红" Design System */
+
+.page-container {
+  min-height: 100vh;
+  background-color: #F5F5FA;
+  padding-bottom: 0;
+}
+
+/* Loading */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 300rpx;
+}
+
+.loading-spinner {
+  width: 48rpx;
+  height: 48rpx;
+  border: 4rpx solid #F0F0F5;
+  border-top-color: #D4363C;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  margin-bottom: 16rpx;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #9E9EB0;
+}
+
+/* Hero Header */
+.hero-header {
+  padding: 60rpx 32rpx 48rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-header.hero-entertainment {
+  background: linear-gradient(135deg, #34C759, #5DD87A);
+}
+
+.hero-header.hero-internal {
+  background: linear-gradient(135deg, #D4363C, #E85A5F);
+}
+
+.hero-header.hero-external {
+  background: linear-gradient(135deg, #FF6B35, #FF8F66);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badges {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.type-badge {
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+  margin-right: 16rpx;
+}
+
+.type-badge-entertainment {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.type-badge-internal {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.type-badge-external {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.status-badge {
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.status-badge-open {
+  background: rgba(255, 255, 255, 0.9);
+  color: #34C759;
+}
+
+.status-badge-closed {
+  background: rgba(255, 255, 255, 0.9);
+  color: #FF9500;
+}
+
+.status-badge-cancelled {
+  background: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.status-badge-completed {
+  background: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-title {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+  text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+/* Weather Cancel Banner */
+.weather-banner {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #FFF8E1, #FFF3CD);
+  border-left: 8rpx solid #FF9500;
+  padding: 24rpx 28rpx;
+  margin: 24rpx 24rpx 0;
+  border-radius: 16rpx;
+}
+
+.weather-emoji {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.weather-text {
+  font-size: 28rpx;
+  color: #8C6D00;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Info Cards Section */
+.info-cards {
+  padding: 24rpx;
+}
+
+.info-card {
+  display: flex;
+  align-items: flex-start;
+  background: #ffffff;
+  border-radius: 28rpx;
+  padding: 28rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 4rpx 24rpx rgba(0, 0, 0, 0.06);
+}
+
+.info-card-emoji {
+  font-size: 36rpx;
+  margin-right: 20rpx;
+  margin-top: 4rpx;
+  flex-shrink: 0;
+}
+
+.info-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-card-label {
+  font-size: 24rpx;
+  color: #9E9EB0;
+  margin-bottom: 8rpx;
+}
+
+.info-card-value {
+  font-size: 30rpx;
+  color: #2D2D3A;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Enrollment Card */
+.enrollment-detail {
+  width: 100%;
+}
+
+.enrollment-progress-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.enrollment-bar-bg {
+  flex: 1;
+  height: 14rpx;
+  background: #F0F0F5;
+  border-radius: 7rpx;
+  overflow: hidden;
+  margin-right: 16rpx;
+}
+
+.enrollment-bar-fill {
+  height: 100%;
+  border-radius: 7rpx;
+  background: linear-gradient(90deg, #D4363C, #FF6B35);
+  transition: width 0.4s ease;
+}
+
+.enrollment-percent {
+  font-size: 26rpx;
+  color: #D4363C;
+  font-weight: 600;
+  flex-shrink: 0;
+  min-width: 70rpx;
+  text-align: right;
+}
+
+.enrollment-count-text {
+  font-size: 28rpx;
+  color: #2D2D3A;
+  font-weight: 500;
+}
+
+/* Weather Tolerance Notice */
+.weather-tolerance-notice {
+  display: flex;
+  align-items: center;
+  background: rgba(52, 199, 89, 0.08);
+  border: 2rpx solid rgba(52, 199, 89, 0.2);
+  border-radius: 20rpx;
+  padding: 24rpx 28rpx;
+  margin: 0 24rpx 24rpx;
+}
+
+.notice-icon-circle {
+  width: 40rpx;
+  height: 40rpx;
+  background: #34C759;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+  font-weight: 700;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.notice-content {
+  font-size: 26rpx;
+  color: #2D8A4E;
+  line-height: 1.5;
+}
+
+/* Signup Section */
+.signup-section {
+  background: #ffffff;
+  border-radius: 28rpx;
+  padding: 32rpx;
+  margin: 0 24rpx 24rpx;
+  box-shadow: 0 4rpx 24rpx rgba(0, 0, 0, 0.06);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #2D2D3A;
+}
+
+.section-count {
+  font-size: 24rpx;
+  color: #9E9EB0;
+  background: #F5F5FA;
+  padding: 6rpx 16rpx;
+  border-radius: 16rpx;
+}
+
+/* Signup Grid */
+.signup-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.signup-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  margin-bottom: 28rpx;
+}
+
+.avatar-wrapper {
+  width: 88rpx;
+  height: 88rpx;
+  margin-bottom: 10rpx;
+}
+
+.user-avatar {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  border: 3rpx solid #F0F0F5;
+}
+
+.avatar-placeholder {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #D4363C, #FF6B35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-initial {
+  font-size: 32rpx;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.user-nickname {
+  font-size: 22rpx;
+  color: #6B6B80;
+  text-align: center;
+  max-width: 130rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.signup-empty {
+  display: flex;
+  justify-content: center;
+  padding: 48rpx 0;
+}
+
+.signup-empty-text {
+  font-size: 26rpx;
+  color: #9E9EB0;
+}
+
+/* Bottom Spacer */
+.bottom-spacer {
+  height: 160rpx;
+}
+
+/* Bottom Action Bar */
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  box-shadow: 0 -4rpx 24rpx rgba(0, 0, 0, 0.08);
+  z-index: 100;
+}
+
+.action-bar-inner {
+  padding: 20rpx 32rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+}
+
+.action-btn {
+  width: 100%;
+  height: 92rpx;
+  border-radius: 24rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  line-height: 92rpx;
+}
+
+.btn-signup {
+  background: linear-gradient(135deg, #D4363C, #FF6B35);
+  color: #ffffff;
+  box-shadow: 0 8rpx 24rpx rgba(212, 54, 60, 0.3);
+}
+
+.btn-signup:active {
+  opacity: 0.85;
+  transform: scale(0.98);
+}
+
+.btn-cancel {
+  background: #ffffff;
+  color: #D4363C;
+  border: 3rpx solid #D4363C;
+}
+
+.btn-cancel:active {
+  background: rgba(212, 54, 60, 0.05);
+}
+
+.btn-disabled {
+  background: #F0F0F5;
+  color: #9E9EB0;
+}

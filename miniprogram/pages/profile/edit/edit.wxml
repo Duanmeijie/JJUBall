@@ -1,0 +1,57 @@
+<!-- pages/profile/edit/edit.wxml -->
+<view class="edit-page">
+  <!-- 头像区域 -->
+  <view class="avatar-section">
+    <view class="avatar-wrapper" bindtap="handleChooseAvatar">
+      <image class="avatar" src="{{avatarUrl || '/static/images/default-avatar.png'}}" mode="aspectFill"></image>
+      <view class="avatar-mask">
+        <text class="avatar-mask-text">更换</text>
+      </view>
+    </view>
+    <text class="avatar-tip">点击更换头像</text>
+  </view>
+
+  <!-- 表单区域 -->
+  <view class="form-section">
+    <view class="form-item">
+      <text class="form-label">昵称</text>
+      <input
+        class="form-input"
+        placeholder="请输入昵称"
+        value="{{nickName}}"
+        data-field="nickName"
+        bindinput="onInputChange"
+        maxlength="20"
+      />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">学号</text>
+      <input
+        class="form-input"
+        placeholder="请输入学号"
+        value="{{studentId}}"
+        data-field="studentId"
+        bindinput="onInputChange"
+        maxlength="20"
+      />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">真实姓名</text>
+      <input
+        class="form-input"
+        placeholder="请输入真实姓名"
+        value="{{name}}"
+        data-field="name"
+        bindinput="onInputChange"
+        maxlength="10"
+      />
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <view class="btn-section">
+    <button class="save-btn" bindtap="handleSave" loading="{{saving}}">保存修改</button>
+  </view>
+</view>

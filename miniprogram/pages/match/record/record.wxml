@@ -1,0 +1,115 @@
+<view class="page-container">
+  <!-- Permission Notice -->
+  <view class="permission-notice" wx:if="{{!hasPermission}}">
+    <view class="notice-icon">🔒</view>
+    <text class="notice-text">仅裁判员或管理员可录入成绩</text>
+  </view>
+
+  <!-- Record Form -->
+  <view class="record-form" wx:if="{{hasPermission}}">
+    <!-- Player A Selection -->
+    <view class="form-section">
+      <text class="section-title">选手A</text>
+      <picker
+        mode="selector"
+        range="{{userList}}"
+        range-key="nickName"
+        value="{{playerAIndex}}"
+        bindchange="onPlayerAPick"
+      >
+        <view class="player-card {{playerA ? 'selected' : ''}}">
+          <image class="player-avatar" wx:if="{{playerA}}" src="{{playerA.avatarUrl}}" mode="aspectFill"></image>
+          <view class="player-placeholder" wx:else>
+            <text class="placeholder-icon">+</text>
+          </view>
+          <text class="player-name">{{playerA ? playerA.nickName : '请选择选手A'}}</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- VS Divider -->
+    <view class="vs-divider">
+      <text class="vs-text">VS</text>
+    </view>
+
+    <!-- Player B Selection -->
+    <view class="form-section">
+      <text class="section-title">选手B</text>
+      <picker
+        mode="selector"
+        range="{{userList}}"
+        range-key="nickName"
+        value="{{playerBIndex}}"
+        bindchange="onPlayerBPick"
+      >
+        <view class="player-card {{playerB ? 'selected' : ''}}">
+          <image class="player-avatar" wx:if="{{playerB}}" src="{{playerB.avatarUrl}}" mode="aspectFill"></image>
+          <view class="player-placeholder" wx:else>
+            <text class="placeholder-icon">+</text>
+          </view>
+          <text class="player-name">{{playerB ? playerB.nickName : '请选择选手B'}}</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- Match Type -->
+    <view class="form-section">
+      <text class="section-title">比赛类型</text>
+      <picker
+        mode="selector"
+        range="{{matchTypeOptions}}"
+        value="{{matchTypeIndex}}"
+        bindchange="onMatchTypePick"
+      >
+        <view class="picker-display">
+          <text>{{matchTypeOptions[matchTypeIndex]}}</text>
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- Activity ID (Optional) -->
+    <view class="form-section">
+      <text class="section-title">关联活动 (可选)</text>
+      <input
+        class="form-input"
+        placeholder="请输入活动ID"
+        value="{{activityId}}"
+        bindinput="onActivityIdInput"
+      />
+    </view>
+
+    <!-- Score Input -->
+    <view class="score-section">
+      <text class="section-title">比分</text>
+      <view class="score-input-row">
+        <view class="score-input-group">
+          <text class="score-label">{{playerA ? playerA.nickName : '选手A'}}</text>
+          <input
+            class="score-input"
+            type="number"
+            placeholder="0"
+            value="{{scoreA}}"
+            bindinput="onScoreAInput"
+          />
+        </view>
+        <text class="score-colon">:</text>
+        <view class="score-input-group">
+          <text class="score-label">{{playerB ? playerB.nickName : '选手B'}}</text>
+          <input
+            class="score-input"
+            type="number"
+            placeholder="0"
+            value="{{scoreB}}"
+            bindinput="onScoreBInput"
+          />
+        </view>
+      </view>
+    </view>
+
+    <!-- Submit Button -->
+    <button class="submit-btn" bindtap="handleSubmit" loading="{{submitting}}">
+      提交成绩
+    </button>
+  </view>
+</view>

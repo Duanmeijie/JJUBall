@@ -1,0 +1,185 @@
+/* pages/profile/feedback/feedback.wxss */
+
+.feedback-page {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding-bottom: 60rpx;
+}
+
+/* 区域标题 */
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333333;
+  padding: 30rpx 30rpx 20rpx;
+}
+
+/* 提交反馈区域 */
+.submit-section {
+  background: #ffffff;
+  margin: 16rpx 24rpx;
+  border-radius: 16rpx;
+  padding-bottom: 30rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+
+.textarea-wrap {
+  padding: 0 30rpx;
+  position: relative;
+}
+
+.feedback-textarea {
+  width: 100%;
+  min-height: 200rpx;
+  font-size: 28rpx;
+  color: #333333;
+  line-height: 1.6;
+  padding: 20rpx;
+  background: #f9f9f9;
+  border-radius: 12rpx;
+  box-sizing: border-box;
+}
+
+.char-count {
+  position: absolute;
+  bottom: 16rpx;
+  right: 46rpx;
+  font-size: 22rpx;
+  color: #cccccc;
+}
+
+.contact-wrap {
+  padding: 24rpx 30rpx 0;
+}
+
+.contact-label {
+  font-size: 26rpx;
+  color: #666666;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.contact-input {
+  height: 72rpx;
+  background: #f9f9f9;
+  border-radius: 12rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.contact-input::placeholder {
+  color: #cccccc;
+}
+
+.submit-btn {
+  margin: 30rpx 30rpx 0;
+  height: 84rpx;
+  line-height: 84rpx;
+  background: linear-gradient(135deg, #D4363C, #FF6B35);
+  color: #ffffff;
+  font-size: 30rpx;
+  font-weight: 500;
+  border-radius: 42rpx;
+  border: none;
+}
+
+.submit-btn::after {
+  border: none;
+}
+
+.submit-btn[disabled] {
+  background: #cccccc;
+  color: #ffffff;
+}
+
+/* 历史反馈列表 */
+.history-section {
+  margin-top: 24rpx;
+}
+
+.feedback-list {
+  padding: 0 24rpx;
+}
+
+.feedback-item {
+  background: #ffffff;
+  border-radius: 12rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.feedback-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.feedback-status {
+  font-size: 22rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 16rpx;
+  font-weight: 500;
+}
+
+.status-pending {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.status-resolved {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.feedback-time {
+  font-size: 22rpx;
+  color: #bbbbbb;
+}
+
+.feedback-content {
+  font-size: 28rpx;
+  color: #333333;
+  line-height: 1.6;
+  display: block;
+  word-break: break-all;
+}
+
+/* 管理员回复 */
+.admin-reply {
+  margin-top: 20rpx;
+  padding: 20rpx;
+  background: rgba(212, 54, 60, 0.04);
+  border-radius: 8rpx;
+  border-left: 4rpx solid #D4363C;
+}
+
+.reply-header {
+  margin-bottom: 8rpx;
+}
+
+.reply-label {
+  font-size: 24rpx;
+  color: #D4363C;
+  font-weight: 500;
+}
+
+.reply-content {
+  font-size: 26rpx;
+  color: #555555;
+  line-height: 1.6;
+  display: block;
+}
+
+/* 空状态 */
+.empty-history {
+  text-align: center;
+  padding: 60rpx 0;
+}
+
+.empty-history-text {
+  font-size: 26rpx;
+  color: #cccccc;
+}

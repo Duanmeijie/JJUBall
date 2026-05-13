@@ -1,0 +1,90 @@
+<view class="container" wx:if="{{authorized}}">
+  <!-- Credit Rules Card -->
+  <view class="rules-card">
+    <view class="card-title">信誉分扣除规则</view>
+
+    <!-- Temp Cancel Score -->
+    <view class="rule-item">
+      <view class="rule-header">
+        <text class="rule-label">临时取消扣分</text>
+        <view class="rule-value" wx:if="{{!editing}}">
+          <text class="value-text">{{rules.tempCancelScore}}</text>
+          <text class="value-unit">分</text>
+        </view>
+        <input
+          wx:if="{{editing}}"
+          class="rule-input"
+          type="digit"
+          value="{{rules.tempCancelScore}}"
+          data-field="tempCancelScore"
+          bindinput="onInputChange"
+        />
+      </view>
+      <text class="rule-desc">报名后在活动开始前临时取消报名，将扣除该分值</text>
+    </view>
+
+    <!-- Absent Score -->
+    <view class="rule-item">
+      <view class="rule-header">
+        <text class="rule-label">缺席扣分</text>
+        <view class="rule-value" wx:if="{{!editing}}">
+          <text class="value-text">{{rules.absentScore}}</text>
+          <text class="value-unit">分</text>
+        </view>
+        <input
+          wx:if="{{editing}}"
+          class="rule-input"
+          type="digit"
+          value="{{rules.absentScore}}"
+          data-field="absentScore"
+          bindinput="onInputChange"
+        />
+      </view>
+      <text class="rule-desc">报名后未到场参加活动，将扣除该分值</text>
+    </view>
+
+    <!-- Threshold -->
+    <view class="rule-item">
+      <view class="rule-header">
+        <text class="rule-label">限制报名阈值</text>
+        <view class="rule-value" wx:if="{{!editing}}">
+          <text class="value-text">{{rules.threshold}}</text>
+          <text class="value-unit">分</text>
+        </view>
+        <input
+          wx:if="{{editing}}"
+          class="rule-input"
+          type="digit"
+          value="{{rules.threshold}}"
+          data-field="threshold"
+          bindinput="onInputChange"
+        />
+      </view>
+      <text class="rule-desc">信誉分低于该阈值时，用户将被限制报名活动</text>
+    </view>
+  </view>
+
+  <!-- Info Notice -->
+  <view class="notice-box">
+    <text class="notice-text">说明：信誉分初始值为100分，因天气原因取消的活动不会扣除信誉分。信誉分低于阈值的用户将无法报名新活动。</text>
+  </view>
+
+  <!-- Action Buttons -->
+  <view class="action-bar">
+    <view class="btn btn-edit" bindtap="toggleEdit" wx:if="{{!editing}}">
+      <text>编辑规则</text>
+    </view>
+    <view class="btn-group" wx:if="{{editing}}">
+      <view class="btn btn-cancel" bindtap="toggleEdit">
+        <text>取消</text>
+      </view>
+      <view class="btn btn-save" bindtap="handleSave">
+        <text>保存</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="no-auth" wx:if="{{!authorized}}">
+  <text class="no-auth-text">无权访问此页面</text>
+</view>

@@ -1,0 +1,44 @@
+<!-- components/activity-card/activity-card.wxml -->
+<view class="activity-card" bindtap="onTap" hover-class="card-hover">
+  <!-- Top Accent Strip -->
+  <view class="accent-strip accent-{{activity.type}}"></view>
+
+  <!-- Card Content -->
+  <view class="card-content">
+    <!-- Title Row -->
+    <view class="title-row">
+      <view class="card-title">{{activity.title}}</view>
+      <view class="type-tag type-{{activity.type}}">{{typeText}}</view>
+    </view>
+
+    <!-- Info Rows -->
+    <view class="info-section">
+      <view class="info-row">
+        <text class="info-emoji">📍</text>
+        <text class="info-text">{{activity.location}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-emoji">🕐</text>
+        <text class="info-text">{{timeRange}}</text>
+      </view>
+    </view>
+
+    <!-- Bottom Section -->
+    <view class="card-bottom">
+      <view class="progress-section">
+        <view class="progress-bar-bg">
+          <view class="progress-bar-fill" style="width: {{enrollPercent}}%"></view>
+        </view>
+        <view class="progress-text">
+          <text class="progress-count">{{activity.enrolledCount}}/{{activity.maxCount}}人</text>
+          <text class="progress-percent">{{enrollPercent}}%</text>
+        </view>
+      </view>
+
+      <view class="bottom-right">
+        <view class="status-badge status-{{activity.status}}">{{statusText}}</view>
+        <text class="arrow-indicator">›</text>
+      </view>
+    </view>
+  </view>
+</view>

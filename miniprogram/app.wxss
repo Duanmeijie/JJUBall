@@ -1,0 +1,218 @@
+/* app.wxss - JJUBall 全局样式 - 国球红主色调 */
+page {
+  background-color: #F5F5F8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  font-size: 28rpx;
+  color: #2D2D3A;
+  line-height: 1.6;
+  --color-primary: #D4363C;
+  --color-primary-dark: #B82E33;
+  --color-primary-light: #FFE8E8;
+  --color-accent: #FF6B35;
+  --color-gold: #F5A623;
+  --color-success: #34C759;
+  --color-warning: #FF9500;
+  --color-danger: #FF3B30;
+  --color-text: #2D2D3A;
+  --color-text-secondary: #6B6B80;
+  --color-text-light: #9E9EB0;
+  --color-bg: #F5F5F8;
+  --color-card: #FFFFFF;
+  --color-border: #EDEDF0;
+  --radius-sm: 12rpx;
+  --radius-md: 20rpx;
+  --radius-lg: 28rpx;
+  --radius-xl: 36rpx;
+  --shadow-card: 0 4rpx 24rpx rgba(0, 0, 0, 0.06);
+  --shadow-float: 0 8rpx 40rpx rgba(212, 54, 60, 0.12);
+}
+
+/* 容器 */
+.container {
+  padding: 24rpx 32rpx;
+  box-sizing: border-box;
+}
+
+/* 卡片 */
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: var(--shadow-card);
+}
+
+/* 按钮通用 - 现代化圆角+渐变 */
+.btn-primary {
+  background: linear-gradient(135deg, #D4363C 0%, #FF6B35 100%);
+  color: #ffffff;
+  border-radius: 24rpx;
+  padding: 24rpx 48rpx;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 600;
+  box-shadow: 0 8rpx 24rpx rgba(212, 54, 60, 0.3);
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background: var(--color-card);
+  color: var(--color-primary);
+  border: 2rpx solid var(--color-primary);
+  border-radius: 24rpx;
+  padding: 22rpx 46rpx;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.btn-secondary:active {
+  background: var(--color-primary-light);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #FF3B30 0%, #FF6B5A 100%);
+  color: #ffffff;
+  border-radius: 24rpx;
+  padding: 24rpx 48rpx;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 600;
+  box-shadow: 0 8rpx 24rpx rgba(255, 59, 48, 0.3);
+  border: none;
+}
+
+.btn-disabled {
+  background: #E8E8EC;
+  color: #ACACB8;
+  border-radius: 24rpx;
+  padding: 24rpx 48rpx;
+  text-align: center;
+  font-size: 30rpx;
+  border: none;
+}
+
+/* 文字样式 */
+.text-primary { color: var(--color-primary); }
+.text-accent { color: var(--color-accent); }
+.text-danger { color: var(--color-danger); }
+.text-warning { color: var(--color-warning); }
+.text-success { color: var(--color-success); }
+.text-gray { color: var(--color-text-light); }
+.text-bold { font-weight: 600; }
+
+/* 间距 */
+.mt-10 { margin-top: 10rpx; }
+.mt-20 { margin-top: 20rpx; }
+.mt-30 { margin-top: 30rpx; }
+.mb-10 { margin-bottom: 10rpx; }
+.mb-20 { margin-bottom: 20rpx; }
+.mb-30 { margin-bottom: 30rpx; }
+
+/* Flex 布局 */
+.flex-row { display: flex; flex-direction: row; align-items: center; }
+.flex-column { display: flex; flex-direction: column; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.flex-center { display: flex; justify-content: center; align-items: center; }
+.flex-1 { flex: 1; }
+
+/* 分隔线 */
+.divider {
+  height: 1rpx;
+  background: var(--color-border);
+  margin: 24rpx 0;
+}
+
+/* 加载与空状态 */
+.loading-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80rpx 0;
+}
+
+.empty-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 0;
+}
+
+.empty-wrap .empty-text {
+  color: var(--color-text-light);
+  font-size: 28rpx;
+  margin-top: 24rpx;
+}
+
+/* 标签 */
+.tag {
+  display: inline-block;
+  padding: 6rpx 18rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+  margin-right: 12rpx;
+}
+
+.tag-red {
+  background: rgba(212, 54, 60, 0.08);
+  color: var(--color-primary);
+}
+
+.tag-orange {
+  background: rgba(255, 107, 53, 0.08);
+  color: var(--color-accent);
+}
+
+.tag-green {
+  background: rgba(52, 199, 89, 0.08);
+  color: var(--color-success);
+}
+
+.tag-gray {
+  background: rgba(158, 158, 176, 0.08);
+  color: var(--color-text-light);
+}
+
+.tag-gold {
+  background: rgba(245, 166, 35, 0.08);
+  color: var(--color-gold);
+}
+
+/* 徽章 */
+.badge {
+  position: absolute;
+  top: -8rpx;
+  right: -8rpx;
+  min-width: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  background: var(--color-danger);
+  color: #ffffff;
+  font-size: 20rpx;
+  border-radius: 16rpx;
+  padding: 0 8rpx;
+}
+
+/* 进度条 */
+.progress-bar {
+  width: 100%;
+  height: 12rpx;
+  background: #EDEDF0;
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+
+.progress-bar .progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  border-radius: 6rpx;
+  transition: width 0.3s ease;
+}

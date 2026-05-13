@@ -1,0 +1,131 @@
+<!-- pages/profile/profile/profile.wxml -->
+<view class="profile-page">
+  <!-- 已登录状态 -->
+  <block wx:if="{{isLogin}}">
+    <!-- Profile Header with Gradient -->
+    <view class="profile-header">
+      <view class="header-content">
+        <!-- Avatar -->
+        <view class="avatar-wrapper">
+          <image wx:if="{{userInfo.avatarUrl}}" class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+          <view wx:else class="avatar-fallback" style="background-color: {{rankColor}};">
+            <text class="avatar-letter">{{avatarLetter}}</text>
+          </view>
+        </view>
+        <!-- User Info -->
+        <view class="user-meta">
+          <text class="nickname">{{userInfo.nickName || '未设置昵称'}}</text>
+          <view class="badges-row">
+            <text class="role-badge">{{userInfo.roleName}}</text>
+            <text class="rank-badge" style="background-color: {{rankColor}};">{{userInfo.rank || '青铜'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Stats Dashboard Card (overlapping header) -->
+    <view class="stats-card">
+      <view class="stats-grid">
+        <view class="stat-item">
+          <text class="stat-value">{{totalMatches}}</text>
+          <text class="stat-label">总场次</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{wins}}</text>
+          <text class="stat-label">胜场</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{winRate}}</text>
+          <text class="stat-label">胜率</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value rank-value" style="color: {{rankColor}};">{{userInfo.rank || '青铜'}}</text>
+          <text class="stat-label">当前段位</text>
+        </view>
+      </view>
+      <view class="stats-divider"></view>
+      <view class="stats-row-bottom">
+        <view class="stats-row-item">
+          <text class="stats-row-label">赛季积分</text>
+          <text class="stats-row-value">{{userInfo.currentScore || 0}}</text>
+        </view>
+        <view class="stats-row-sep"></view>
+        <view class="stats-row-item">
+          <text class="stats-row-label">信誉分</text>
+          <text class="stats-row-value {{creditColorClass}}">{{userInfo.creditScore || 100}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Menu List -->
+    <view class="menu-card">
+      <view class="menu-item" bindtap="goToEdit" hover-class="menu-item-hover">
+        <view class="menu-left">
+          <text class="menu-emoji">✏️</text>
+          <text class="menu-text">编辑资料</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+
+      <view class="menu-item" bindtap="goToMessages" hover-class="menu-item-hover">
+        <view class="menu-left">
+          <text class="menu-emoji">💬</text>
+          <text class="menu-text">消息中心</text>
+        </view>
+        <view class="menu-right">
+          <text class="unread-badge" wx:if="{{unreadCount > 0}}">{{unreadCount > 99 ? '99+' : unreadCount}}</text>
+          <text class="menu-arrow">></text>
+        </view>
+      </view>
+
+      <view class="menu-item" bindtap="goToHistory" hover-class="menu-item-hover">
+        <view class="menu-left">
+          <text class="menu-emoji">📊</text>
+          <text class="menu-text">比赛历史</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+
+      <view class="menu-item" bindtap="goToFeedback" hover-class="menu-item-hover">
+        <view class="menu-left">
+          <text class="menu-emoji">💡</text>
+          <text class="menu-text">意见反馈</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+
+      <!-- Divider before admin items -->
+      <view class="menu-divider" wx:if="{{userInfo.role === 'admin' || userInfo.role === 'referee'}}"></view>
+
+      <!-- 管理后台 - 仅管理员可见 -->
+      <view class="menu-item menu-item-admin" wx:if="{{userInfo.role === 'admin'}}" bindtap="goToAdmin" hover-class="menu-item-hover">
+        <view class="menu-left">
+          <text class="menu-emoji">⚙️</text>
+          <text class="menu-text menu-text-admin">管理后台</text>
+        </view>
+        <text class="menu-arrow menu-arrow-admin">></text>
+      </view>
+
+      <!-- 录入成绩 - 裁判/管理员可见 -->
+      <view class="menu-item" wx:if="{{userInfo.role === 'referee' || userInfo.role === 'admin'}}" bindtap="goToMatchRecord" hover-class="menu-item-hover">
+        <view class="menu-left">
+          <text class="menu-emoji">🎯</text>
+          <text class="menu-text">录入成绩</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+    </view>
+  </block>
+
+  <!-- 未登录状态 -->
+  <block wx:else>
+    <view class="login-wrapper">
+      <view class="login-card">
+        <text class="login-emoji">🏓</text>
+        <text class="login-title">JJUBall 九江学院乒乓球协会</text>
+        <text class="login-desc">登录后查看个人数据和更多功能</text>
+        <button class="login-btn" bindtap="handleLogin">微信登录</button>
+      </view>
+    </view>
+  </block>
+</view>

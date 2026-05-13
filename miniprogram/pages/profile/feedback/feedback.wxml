@@ -1,0 +1,61 @@
+<!-- pages/profile/feedback/feedback.wxml -->
+<view class="feedback-page">
+  <!-- 提交反馈区域 -->
+  <view class="submit-section">
+    <view class="section-title">提交反馈</view>
+    <view class="textarea-wrap">
+      <textarea
+        class="feedback-textarea"
+        placeholder="请描述您的问题或建议..."
+        value="{{content}}"
+        bindinput="onContentInput"
+        maxlength="500"
+        auto-height
+      ></textarea>
+      <text class="char-count">{{content.length}}/500</text>
+    </view>
+
+    <view class="contact-wrap">
+      <text class="contact-label">联系方式（选填）</text>
+      <input
+        class="contact-input"
+        placeholder="手机号或微信号，方便我们联系您"
+        value="{{contact}}"
+        bindinput="onContactInput"
+        maxlength="30"
+      />
+    </view>
+
+    <button class="submit-btn" bindtap="handleSubmit" loading="{{submitting}}" disabled="{{submitting}}">
+      提交反馈
+    </button>
+  </view>
+
+  <!-- 历史反馈列表 -->
+  <view class="history-section" wx:if="{{feedbackList.length > 0}}">
+    <view class="section-title">我的反馈</view>
+    <view class="feedback-list">
+      <view class="feedback-item" wx:for="{{feedbackList}}" wx:key="_id">
+        <view class="feedback-item-header">
+          <text class="feedback-status {{item.status === 'resolved' ? 'status-resolved' : 'status-pending'}}">
+            {{item.status === 'resolved' ? '已回复' : '待处理'}}
+          </text>
+          <text class="feedback-time">{{item.timeText}}</text>
+        </view>
+        <text class="feedback-content">{{item.content}}</text>
+        <!-- 管理员回复 -->
+        <view class="admin-reply" wx:if="{{item.reply}}">
+          <view class="reply-header">
+            <text class="reply-label">管理员回复：</text>
+          </view>
+          <text class="reply-content">{{item.reply}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 无反馈历史 -->
+  <view class="empty-history" wx:if="{{!loading && feedbackList.length === 0}}">
+    <text class="empty-history-text">暂无反馈记录</text>
+  </view>
+</view>

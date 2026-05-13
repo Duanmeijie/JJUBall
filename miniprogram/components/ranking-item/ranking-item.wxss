@@ -1,0 +1,120 @@
+/* components/ranking-item/ranking-item.wxss */
+.ranking-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 24rpx;
+  background: #ffffff;
+  border-radius: 16rpx;
+  margin-bottom: 16rpx;
+  transition: all 0.2s ease;
+}
+
+.ranking-item.top-three {
+  background: linear-gradient(135deg, rgba(245, 166, 35, 0.04), rgba(255, 107, 53, 0.04));
+  box-shadow: 0 4rpx 16rpx rgba(245, 166, 35, 0.08);
+}
+
+/* Rank Position */
+.rank-position {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 20rpx;
+}
+
+.rank-medal {
+  font-size: 44rpx;
+}
+
+.rank-number {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #9E9EB0;
+}
+
+/* Player Info */
+.player-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  overflow: hidden;
+}
+
+.player-avatar {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  margin-right: 18rpx;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #FFE8E8, #FFDAD6);
+}
+
+.player-detail {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.player-nickname {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #2D2D3A;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 6rpx;
+}
+
+/* Rank Badge */
+.rank-badge {
+  display: inline-block;
+  font-size: 20rpx;
+  padding: 4rpx 14rpx;
+  border-radius: 20rpx;
+  font-weight: 600;
+  max-width: fit-content;
+}
+
+.rank-badge-bronze {
+  background: rgba(205, 127, 50, 0.1);
+  color: #CD7F32;
+}
+
+.rank-badge-silver {
+  background: rgba(158, 158, 176, 0.1);
+  color: #9E9EB0;
+}
+
+.rank-badge-gold {
+  background: rgba(245, 166, 35, 0.1);
+  color: #F5A623;
+}
+
+.rank-badge-king {
+  background: rgba(212, 54, 60, 0.1);
+  color: #D4363C;
+}
+
+/* Score */
+.player-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: 16rpx;
+}
+
+.score-value {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #D4363C;
+}
+
+.score-label {
+  font-size: 20rpx;
+  color: #9E9EB0;
+  margin-top: 4rpx;
+}

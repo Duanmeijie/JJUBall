@@ -1,0 +1,71 @@
+<view class="container" wx:if="{{authorized}}">
+  <!-- Stats Overview Cards -->
+  <view class="stats-row">
+    <view class="stats-card">
+      <text class="stats-value">{{stats.totalUsers}}</text>
+      <text class="stats-label">总用户数</text>
+    </view>
+    <view class="stats-card">
+      <text class="stats-value">{{stats.totalActivities}}</text>
+      <text class="stats-label">总活动数</text>
+    </view>
+    <view class="stats-card">
+      <text class="stats-value">{{stats.activeSeasonName}}</text>
+      <text class="stats-label">当前赛季</text>
+    </view>
+    <view class="stats-card">
+      <text class="stats-value">{{stats.pendingFeedbacks}}</text>
+      <text class="stats-label">待处理反馈</text>
+    </view>
+  </view>
+
+  <!-- Quick Action Grid -->
+  <view class="section-title">快捷操作</view>
+  <view class="action-grid">
+    <view class="action-item" bindtap="goToUserManage">
+      <image class="action-icon" src="/images/icon-users.png" mode="aspectFit"></image>
+      <text class="action-text">用户管理</text>
+    </view>
+    <view class="action-item" bindtap="goToCreateActivity">
+      <image class="action-icon" src="/images/icon-activity.png" mode="aspectFit"></image>
+      <text class="action-text">发布活动</text>
+    </view>
+    <view class="action-item" bindtap="goToScoreRules">
+      <image class="action-icon" src="/images/icon-score.png" mode="aspectFit"></image>
+      <text class="action-text">积分规则</text>
+    </view>
+    <view class="action-item" bindtap="goToCreditRules">
+      <image class="action-icon" src="/images/icon-credit.png" mode="aspectFit"></image>
+      <text class="action-text">信誉规则</text>
+    </view>
+    <view class="action-item" bindtap="goToExport">
+      <image class="action-icon" src="/images/icon-export.png" mode="aspectFit"></image>
+      <text class="action-text">数据导出</text>
+    </view>
+    <view class="action-item" bindtap="goToWeatherCancel">
+      <image class="action-icon" src="/images/icon-weather.png" mode="aspectFit"></image>
+      <text class="action-text">天气取消</text>
+    </view>
+  </view>
+
+  <!-- Recent Activity Feed -->
+  <view class="section-title">最近活动</view>
+  <view class="recent-feed">
+    <view class="feed-item" wx:for="{{recentActivities}}" wx:key="_id">
+      <view class="feed-info">
+        <text class="feed-title">{{item.title}}</text>
+        <text class="feed-time">{{item.formattedTime}}</text>
+      </view>
+      <view class="feed-status status-{{item.status}}">
+        <text>{{item.statusText}}</text>
+      </view>
+    </view>
+    <view class="empty-tip" wx:if="{{recentActivities.length === 0}}">
+      <text>暂无活动记录</text>
+    </view>
+  </view>
+</view>
+
+<view class="no-auth" wx:if="{{!authorized}}">
+  <text class="no-auth-text">无权访问管理后台</text>
+</view>

@@ -1,0 +1,27 @@
+<!-- components/ranking-item/ranking-item.wxml -->
+<view class="ranking-item {{index < 3 ? 'top-three' : ''}}">
+  <!-- Rank Position -->
+  <view class="rank-position">
+    <text wx:if="{{index === 0}}" class="rank-medal">🥇</text>
+    <text wx:elif="{{index === 1}}" class="rank-medal">🥈</text>
+    <text wx:elif="{{index === 2}}" class="rank-medal">🥉</text>
+    <text wx:else class="rank-number">{{index + 1}}</text>
+  </view>
+
+  <!-- Player Info -->
+  <view class="player-info">
+    <view class="player-avatar" style="background: linear-gradient(135deg, #FFE8E8, #FFDAD6);">
+      <image wx:if="{{item.avatarUrl}}" src="{{item.avatarUrl}}" mode="aspectFill" style="width:100%;height:100%;border-radius:50%;"></image>
+    </view>
+    <view class="player-detail">
+      <view class="player-nickname">{{item.nickName || '球友'}}</view>
+      <view class="rank-badge rank-badge-{{rankLevel}}">{{item.rank || '青铜'}}</view>
+    </view>
+  </view>
+
+  <!-- Score -->
+  <view class="player-score">
+    <text class="score-value">{{item.currentScore || item.score || 0}}</text>
+    <text class="score-label">积分</text>
+  </view>
+</view>
