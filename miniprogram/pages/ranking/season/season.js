@@ -34,8 +34,8 @@ Page({
     this.setData({ loading: true })
 
     db.callFunction('getSeasons', {}).then(res => {
-      if (res && res.result && res.result.data) {
-        const seasons = res.result.data
+      if (res && res.data) {
+        const seasons = res.data
         let currentSeason = null
         const historicalSeasons = []
 
@@ -82,15 +82,38 @@ Page({
   },
 
   /**
-   * Navigate to create season page (admin only)
+   * Create new season (admin only)
    */
   createSeason() {
     if (!this.data.isAdmin) {
       wx.showToast({ title: '无权限', icon: 'none' })
       return
     }
-    wx.navigateTo({
-      url: '/pages/ranking/season/create'
+    wx.showModal({
+      title: '创建赛季',
+      placeholderText: '请输入赛季名称',
+      editable: true,
+      success: async (res) => {
+        if (res.confirm && res.content) {
+          wx.showLoading({ title: '创建中...' })
+          try {
+            const result = await db.callFunction('config', {
+              action: 'createSeason',
+              name: res.content
+            })
+            wx.hideLoading()
+            if (result.code === 0) {
+              wx.showToast({ title: '创建成功', icon: 'success' })
+              this.loadSeasons()
+            } else {
+              wx.showToast({ title: result.message || '创建失败', icon: 'none' })
+            }
+          } catch (err) {
+            wx.hideLoading()
+            wx.showToast({ title: '创建失败', icon: 'none' })
+          }
+        }
+      }
     })
   }
 })

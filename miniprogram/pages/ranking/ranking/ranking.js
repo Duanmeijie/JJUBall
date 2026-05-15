@@ -68,8 +68,8 @@ Page({
    */
   loadCurrentSeason() {
     db.callFunction('getCurrentSeason', {}).then(res => {
-      if (res && res.result && res.result.data) {
-        this.setData({ currentSeason: res.result.data })
+      if (res && res.data) {
+        this.setData({ currentSeason: res.data })
         this.loadScoreRanking()
       }
     }).catch(err => {
@@ -94,8 +94,8 @@ Page({
     }
 
     return db.callFunction('getScoreList', params).then(res => {
-      if (res && res.result && res.result.data) {
-        const list = res.result.data.map((item, index) => {
+      if (res && res.data) {
+        const list = res.data.map((item, index) => {
           const rank = (this.data.page - 1) * this.data.pageSize + index + 1
           return {
             ...item,

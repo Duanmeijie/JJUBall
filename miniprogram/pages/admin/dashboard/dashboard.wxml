@@ -23,27 +23,27 @@
   <view class="section-title">快捷操作</view>
   <view class="action-grid">
     <view class="action-item" bindtap="goToUserManage">
-      <image class="action-icon" src="/images/icon-users.png" mode="aspectFit"></image>
+      <text class="action-icon-emoji">👥</text>
       <text class="action-text">用户管理</text>
     </view>
     <view class="action-item" bindtap="goToCreateActivity">
-      <image class="action-icon" src="/images/icon-activity.png" mode="aspectFit"></image>
+      <text class="action-icon-emoji">📝</text>
       <text class="action-text">发布活动</text>
     </view>
     <view class="action-item" bindtap="goToScoreRules">
-      <image class="action-icon" src="/images/icon-score.png" mode="aspectFit"></image>
+      <text class="action-icon-emoji">📊</text>
       <text class="action-text">积分规则</text>
     </view>
     <view class="action-item" bindtap="goToCreditRules">
-      <image class="action-icon" src="/images/icon-credit.png" mode="aspectFit"></image>
+      <text class="action-icon-emoji">🛡️</text>
       <text class="action-text">信誉规则</text>
     </view>
     <view class="action-item" bindtap="goToExport">
-      <image class="action-icon" src="/images/icon-export.png" mode="aspectFit"></image>
+      <text class="action-icon-emoji">📥</text>
       <text class="action-text">数据导出</text>
     </view>
     <view class="action-item" bindtap="goToWeatherCancel">
-      <image class="action-icon" src="/images/icon-weather.png" mode="aspectFit"></image>
+      <text class="action-icon-emoji">🌤️</text>
       <text class="action-text">天气取消</text>
     </view>
   </view>

@@ -27,8 +27,8 @@ Page({
     wx.showLoading({ title: '加载中...' })
     try {
       const res = await db.callFunction('getOpenActivities', {})
-      if (res.result && res.result.code === 0) {
-        const activities = (res.result.data || []).map(item => ({
+      if (res && res.code === 0) {
+        const activities = (res.data || []).map(item => ({
           ...item,
           formattedTime: formatDateTime(item.startTime),
           enrollCount: item.enrollCount || 0
@@ -89,8 +89,8 @@ Page({
         reason: this.data.reason.trim()
       })
 
-      if (res.result && res.result.code === 0) {
-        const data = res.result.data
+      if (res && res.code === 0) {
+        const data = res.data
         this.setData({
           result: {
             notifiedCount: data.notifiedCount || 0,
@@ -104,7 +104,7 @@ Page({
         // Reload activities list
         this.loadOpenActivities()
       } else {
-        wx.showToast({ title: res.result.message || '取消失败', icon: 'none' })
+        wx.showToast({ title: res.message || '取消失败', icon: 'none' })
       }
     } catch (err) {
       console.error('doCancel error:', err)

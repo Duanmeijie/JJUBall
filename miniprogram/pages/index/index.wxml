@@ -86,6 +86,42 @@
         </view>
         <text class="action-label">录入成绩</text>
       </view>
+      <view class="action-item" bindtap="goToCheckin">
+        <view class="action-emoji-wrapper action-bg-5">
+          <text class="action-emoji">📅</text>
+        </view>
+        <text class="action-label">训练打卡</text>
+      </view>
+      <view class="action-item" bindtap="goToMatchmaking">
+        <view class="action-emoji-wrapper action-bg-6">
+          <text class="action-emoji">🤝</text>
+        </view>
+        <text class="action-label">智能约球</text>
+      </view>
+      <view class="action-item" bindtap="goToDataDashboard">
+        <view class="action-emoji-wrapper action-bg-3">
+          <text class="action-emoji">📊</text>
+        </view>
+        <text class="action-label">数据看板</text>
+      </view>
+      <view class="action-item" bindtap="goToTournament">
+        <view class="action-emoji-wrapper action-bg-2">
+          <text class="action-emoji">🏆</text>
+        </view>
+        <text class="action-label">赛事图谱</text>
+      </view>
+      <view class="action-item" bindtap="goToSkillProfile">
+        <view class="action-emoji-wrapper action-bg-4">
+          <text class="action-emoji">📋</text>
+        </view>
+        <text class="action-label">技术档案</text>
+      </view>
+      <view class="action-item" bindtap="goToAlbum">
+        <view class="action-emoji-wrapper action-bg-1">
+          <text class="action-emoji">📸</text>
+        </view>
+        <text class="action-label">活动相册</text>
+      </view>
     </view>
   </view>
 

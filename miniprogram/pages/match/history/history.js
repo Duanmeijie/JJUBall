@@ -36,8 +36,8 @@ Page({
    */
   loadSeasons() {
     db.callFunction('getSeasons', {}).then(res => {
-      if (res && res.result && res.result.data) {
-        const seasons = [{ _id: '', name: '全部' }, ...res.result.data]
+      if (res && res.data) {
+        const seasons = [{ _id: '', name: '全部' }, ...res.data]
         this.setData({ seasonList: seasons })
       }
     }).catch(err => {
@@ -65,8 +65,8 @@ Page({
     }
 
     return db.callFunction('getMatchHistory', params).then(res => {
-      if (res && res.result && res.result.data) {
-        const newList = res.result.data.map(match => {
+      if (res && res.data) {
+        const newList = res.data.map(match => {
           return {
             ...match,
             formattedDate: formatDateTime(match.createdAt),

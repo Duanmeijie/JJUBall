@@ -271,5 +271,47 @@ Page({
    */
   goToMatchRecord() {
     wx.navigateTo({ url: '/pages/match/record/record' })
+  },
+
+  /**
+   * 跳转到训练打卡
+   */
+  goToCheckin() {
+    wx.navigateTo({ url: '/pages/feature/checkin/checkin' })
+  },
+
+  /**
+   * 跳转到智能约球
+   */
+  goToMatchmaking() {
+    wx.navigateTo({ url: '/pages/feature/matchmaking/matchmaking' })
+  },
+
+  /**
+   * 跳转到技术档案
+   */
+  goToSkillProfile() {
+    wx.navigateTo({ url: '/pages/feature/skill-profile/skill-profile' })
+  },
+
+  /**
+   * 跳转到活动相册
+   */
+  goToAlbum() {
+    wx.navigateTo({ url: '/pages/feature/album/album' })
+  },
+
+  /**
+   * 跳转到赛事图谱
+   */
+  goToTournament() {
+    wx.navigateTo({ url: '/pages/feature/tournament/tournament' })
+  },
+
+  /**
+   * 跳转到数据看板
+   */
+  goToDataDashboard() {
+    wx.navigateTo({ url: '/pages/feature/data-dashboard/data-dashboard' })
   }
 })

@@ -1,0 +1,109 @@
+<view class="page-wrap">
+  <view class="header-banner">
+    <text class="header-title">📊 数据看板</text>
+    <text class="header-sub">深度分析你的比赛数据</text>
+  </view>
+
+  <view class="profile-mini">
+    <view class="avatar-round" style="background: {{rankColor}}">
+      <text class="avatar-letter">{{avatarLetter}}</text>
+    </view>
+    <view class="profile-info">
+      <text class="profile-name">{{nickName}}</text>
+      <text class="profile-season">赛季: {{seasonName}}</text>
+    </view>
+  </view>
+
+  <view class="stats-row-3">
+    <view class="stat-card">
+      <text class="stat-val accent-red">{{totalMatches}}</text>
+      <text class="stat-lbl">总场次</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-val accent-green">{{wins}}</text>
+      <text class="stat-lbl">胜场</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-val accent-orange">{{losses}}</text>
+      <text class="stat-lbl">负场</text>
+    </view>
+  </view>
+
+  <view class="winrate-section">
+    <view class="winrate-header">
+      <text class="winrate-l">胜率</text>
+      <text class="winrate-r">{{winRate}}%</text>
+    </view>
+    <view class="winrate-bar-wrap">
+      <view class="winrate-fill" style="width: {{winRate}}%"></view>
+    </view>
+    <view class="winrate-record text-gray">胜 {{wins}} 场 / 负 {{losses}} 场</view>
+  </view>
+
+  <view class="score-section">
+    <view class="score-row">
+      <view class="score-item">
+        <text class="score-label">当前积分</text>
+        <text class="score-val">{{currentScore}}</text>
+      </view>
+      <view class="score-item">
+        <text class="score-label">累计积分</text>
+        <text class="score-val">{{totalScore}}</text>
+      </view>
+      <view class="score-item">
+        <text class="score-label">信誉分</text>
+        <text class="score-val credit-{{creditClass}}">{{creditScore}}</text>
+      </view>
+    </view>
+    <view class="rank-progress">
+      <text class="rank-label">段位晋升 · {{rank}} → 下一段位</text>
+      <view class="progress-track-sm">
+        <view class="progress-fill-sm" style="width: {{nextRankProgress}}%"></view>
+      </view>
+      <text class="rank-percent">{{nextRankProgress}}%</text>
+    </view>
+  </view>
+
+  <view class="monthly-section">
+    <view class="section-header">
+      <text class="section-label">月度趋势</text>
+    </view>
+    <view class="monthly-chart">
+      <view class="month-bar-item" wx:for="{{monthlyData}}" wx:key="month">
+        <view class="bar-column" style="height: {{maxMonthlyMatches > 0 ? (item.matches / maxMonthlyMatches * 200) : 20}}rpx">
+          <text class="bar-count">{{item.matches}}</text>
+        </view>
+        <text class="bar-label">{{item.shortMonth}}</text>
+      </view>
+    </view>
+    <text class="empty-chart-tip" wx:if="{{monthlyData.length === 0}}">暂无月度数据</text>
+  </view>
+
+  <view class="opponent-section" wx:if="{{favoriteOpponent}}">
+    <view class="section-header">
+      <text class="section-label">最佳对手</text>
+    </view>
+    <view class="opponent-highlight">
+      <text class="opponent-emoji">🤼</text>
+      <view class="opponent-info">
+        <text class="opponent-name">{{favoriteOpponent.nickName}}</text>
+        <text class="opponent-stat">交手 {{favoriteOpponent.matches}} 次</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="recent-section">
+    <view class="section-header">
+      <text class="section-label">最近比赛</text>
+    </view>
+    <view class="recent-list">
+      <view class="recent-item" wx:for="{{recentMatches}}" wx:key="_id">
+        <text class="recent-result {{item.isWinner ? 'win' : 'lose'}}">{{item.isWinner ? 'W' : 'L'}}</text>
+        <text class="recent-meta">{{item.playerAName}} vs {{item.playerBName}}</text>
+      </view>
+      <text class="empty-tip" wx:if="{{recentMatches.length === 0}}">暂无比赛记录</text>
+    </view>
+  </view>
+
+  <view class="loading-tip" wx:if="{{loading}}">加载中...</view>
+</view>

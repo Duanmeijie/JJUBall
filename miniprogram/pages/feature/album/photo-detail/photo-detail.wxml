@@ -1,0 +1,37 @@
+<view class="page-wrap">
+  <view class="photo-main">
+    <view class="photo-placeholder">
+      <text class="photo-placeholder-emoji">🏓</text>
+      <text class="photo-placeholder-text">精彩瞬间</text>
+    </view>
+  </view>
+
+  <view class="photo-actions">
+    <view class="action-btn" bindtap="handleLike">
+      <text class="action-icon">{{liked ? '❤️' : '🤍'}}</text>
+      <text class="action-text">{{liked ? '已赞' : '点赞'}}</text>
+      <text class="action-count" wx:if="{{likeCount > 0}}">{{likeCount}}</text>
+    </view>
+    <view class="action-btn">
+      <text class="action-icon">💬</text>
+      <text class="action-text">评论</text>
+    </view>
+  </view>
+
+  <view class="comment-section">
+    <view class="section-header">
+      <text class="section-lbl">评论 ({{comments.length}})</text>
+    </view>
+
+    <view class="comment-input-wrap">
+      <input class="comment-input" placeholder="说点什么..." bindinput="onCommentInput" value="{{commentText}}" />
+      <view class="comment-submit" bindtap="submitComment">发送</view>
+    </view>
+
+    <view class="comment-item" wx:for="{{comments}}" wx:key="_id">
+      <text class="comment-user">{{item.user ? item.user.nickName || '匿名' : '匿名'}}</text>
+      <text class="comment-content">{{item.content}}</text>
+    </view>
+    <view class="empty-tip" wx:if="{{comments.length === 0}}">暂无评论</view>
+  </view>
+</view>

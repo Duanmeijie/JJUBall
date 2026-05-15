@@ -80,13 +80,13 @@ Page({
         endDate
       })
 
-      if (res.result && res.result.code === 0) {
-        const url = res.result.data.downloadUrl
+      if (res && res.code === 0) {
+        const url = res.data.downloadUrl
         this.setData({ downloadUrl: url })
         wx.showToast({ title: '导出成功', icon: 'success' })
         this.loadExportHistory()
       } else {
-        wx.showToast({ title: res.result.message || '导出失败', icon: 'none' })
+        wx.showToast({ title: res.message || '导出失败', icon: 'none' })
       }
     } catch (err) {
       console.error('handleExport error:', err)
@@ -119,14 +119,14 @@ Page({
   async loadExportHistory() {
     try {
       const res = await db.callFunction('getExportHistory', { limit: 10 })
-      if (res.result && res.result.code === 0) {
+      if (res && res.code === 0) {
         const typeNameMap = {
           users: '用户数据',
           activities: '活动数据',
           matches: '比赛数据',
           scores: '积分数据'
         }
-        const history = (res.result.data || []).map(item => ({
+        const history = (res.data || []).map(item => ({
           ...item,
           typeName: typeNameMap[item.type] || item.type,
           time: formatDateTime(item.createTime)

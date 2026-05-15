@@ -1,0 +1,59 @@
+<view class="page-wrap">
+  <view class="header-banner">
+    <text class="header-title">🤝 智能约球</text>
+    <text class="header-sub">发现实力相当的球友</text>
+  </view>
+
+  <view class="my-score-card">
+    <text class="my-score-label">我的积分</text>
+    <text class="my-score-val">{{myScore}}</text>
+    <text class="my-score-rank">{{myRank}}</text>
+  </view>
+
+  <view class="match-tabs">
+    <view class="tab-item {{activeTab === 'recommend' ? 'active' : ''}}" bindtap="switchTab" data-tab="recommend">推荐约球</view>
+    <view class="tab-item {{activeTab === 'requests' ? 'active' : ''}}" bindtap="switchTab" data-tab="requests">我的约球</view>
+  </view>
+
+  <block wx:if="{{activeTab === 'recommend'}}">
+    <view class="opponents-list" wx:if="{{opponents.length > 0}}">
+      <view class="opponent-card" wx:for="{{opponents}}" wx:key="_id">
+        <view class="opponent-top">
+          <view class="opponent-avatar-wrap">
+            <image wx:if="{{item.avatarUrl}}" class="opponent-avatar" src="{{item.avatarUrl}}" mode="aspectFill"></image>
+            <view wx:else class="opponent-avatar-fallback">{{item.firstLetter || '?'}}</view>
+          </view>
+          <view class="opponent-info">
+            <text class="opponent-name">{{item.nickName || '匿名'}}</text>
+            <text class="opponent-rank">{{item.rank || '青铜'}} · {{item.currentScore || 0}}分</text>
+          </view>
+          <view class="match-score-badge">
+            <text class="match-score-val">{{item.matchScore}}%</text>
+            <text class="match-score-label">匹配度</text>
+          </view>
+        </view>
+        <view class="opponent-actions">
+          <button class="challenge-btn" bindtap="sendChallenge" data-id="{{item._openid}}" data-name="{{item.nickName}}">发起约球</button>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <block wx:if="{{activeTab === 'requests'}}">
+    <view class="requests-list">
+      <view class="request-item" wx:for="{{myRequests}}" wx:key="_id">
+        <view class="request-top">
+          <text class="request-emoji">📩</text>
+          <view class="request-info">
+            <text class="request-target">约 {{item.opponent ? item.opponent.nickName || '未知用户' : '未知用户'}}</text>
+            <text class="request-status status-{{item.status}}">{{statusMap[item.status]}}</text>
+          </view>
+        </view>
+        <view class="request-message" wx:if="{{item.message}}">{{item.message}}</view>
+      </view>
+      <view class="empty-tip" wx:if="{{myRequests.length === 0}}">暂无约球记录</view>
+    </view>
+  </block>
+
+  <view class="loading-tip" wx:if="{{loading}}">加载中...</view>
+</view>

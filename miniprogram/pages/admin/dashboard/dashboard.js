@@ -34,8 +34,8 @@ Page({
     wx.showLoading({ title: '加载中...' })
     try {
       const res = await db.callFunction('getAdminStats', {})
-      if (res.result && res.result.code === 0) {
-        const data = res.result.data
+      if (res && res.code === 0) {
+        const data = res.data
         this.setData({
           stats: {
             totalUsers: data.totalUsers || 0,
@@ -57,8 +57,8 @@ Page({
   async loadRecentActivities() {
     try {
       const res = await db.callFunction('getRecentActivities', { limit: 5 })
-      if (res.result && res.result.code === 0) {
-        const activities = (res.result.data || []).map(item => {
+      if (res && res.code === 0) {
+        const activities = (res.data || []).map(item => {
           const statusMap = {
             open: '报名中',
             closed: '已结束',
@@ -83,7 +83,7 @@ Page({
   },
 
   goToCreateActivity() {
-    wx.navigateTo({ url: '/pages/admin/create-activity/create-activity' })
+    wx.navigateTo({ url: '/pages/activity/create/create' })
   },
 
   goToScoreRules() {

@@ -25,8 +25,8 @@ Page({
     wx.showLoading({ title: '加载中...' })
     try {
       const res = await db.callFunction('getScoreRules', {})
-      if (res.result && res.result.code === 0) {
-        const data = res.result.data
+      if (res && res.code === 0) {
+        const data = res.data
         const rules = (data.rules || []).map(rule => ({
           ...rule,
           matchTypeName: rule.matchTypeName || rule.matchType
@@ -79,14 +79,14 @@ Page({
         }))
       })
 
-      if (res.result && res.result.code === 0) {
+      if (res && res.code === 0) {
         this.setData({
           editing: false,
           originalRules: JSON.parse(JSON.stringify(this.data.rules))
         })
         wx.showToast({ title: '保存成功', icon: 'success' })
       } else {
-        wx.showToast({ title: res.result.message || '保存失败', icon: 'none' })
+        wx.showToast({ title: res.message || '保存失败', icon: 'none' })
       }
     } catch (err) {
       console.error('handleSave error:', err)

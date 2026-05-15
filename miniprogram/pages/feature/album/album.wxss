@@ -1,0 +1,160 @@
+.page-wrap {
+  min-height: 100vh;
+  background: #F5F5F8;
+  padding-bottom: 60rpx;
+}
+
+.header-banner {
+  background: linear-gradient(135deg, #FF6B35 0%, #F5A623 100%);
+  padding: 60rpx 36rpx 80rpx;
+  border-radius: 0 0 48rpx 48rpx;
+}
+
+.header-title {
+  font-size: 42rpx;
+  font-weight: 800;
+  color: #fff;
+  display: block;
+}
+
+.header-sub {
+  font-size: 26rpx;
+  color: rgba(255,255,255,0.8);
+  margin-top: 8rpx;
+  display: block;
+}
+
+.sticky-tabs {
+  padding: 20rpx 28rpx 0;
+  background: #F5F5F8;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tab-inner {
+  display: flex;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 6rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 18rpx 0;
+  font-size: 26rpx;
+  color: #9E9EB0;
+  border-radius: 14rpx;
+  font-weight: 500;
+}
+
+.tab-item.active {
+  background: linear-gradient(135deg, #FF6B35, #F5A623);
+  color: #fff;
+  font-weight: 600;
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+  padding: 28rpx;
+}
+
+.album-card {
+  background: #fff;
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+}
+
+.album-card:active {
+  transform: scale(0.96);
+}
+
+.album-cover {
+  height: 180rpx;
+  background: linear-gradient(135deg, rgba(255,107,53,0.15), rgba(245,166,35,0.15));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.album-cover-emoji {
+  font-size: 64rpx;
+}
+
+.album-info {
+  padding: 20rpx;
+}
+
+.album-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #2D2D3A;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 6rpx;
+}
+
+.album-meta {
+  font-size: 22rpx;
+  color: #9E9EB0;
+  display: block;
+}
+
+.photo-masonry {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8rpx;
+  padding: 28rpx;
+}
+
+.photo-item {
+  position: relative;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.photo-item:active {
+  opacity: 0.8;
+}
+
+.photo-thumb {
+  background: linear-gradient(135deg, rgba(212,54,60,0.08), rgba(255,107,53,0.08));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-emoji {
+  font-size: 36rpx;
+  opacity: 0.5;
+}
+
+.photo-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8rpx;
+  background: linear-gradient(transparent, rgba(0,0,0,0.3));
+}
+
+.photo-likes {
+  font-size: 20rpx;
+  color: #fff;
+  font-weight: 500;
+}
+
+.empty-tip, .loading-tip {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60rpx;
+  font-size: 26rpx;
+  color: #9E9EB0;
+}

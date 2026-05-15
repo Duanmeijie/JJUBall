@@ -70,9 +70,8 @@
   transform: scale(0.96);
 }
 
-.action-icon {
-  width: 64rpx;
-  height: 64rpx;
+.action-icon-emoji {
+  font-size: 56rpx;
   margin-bottom: 12rpx;
 }
 

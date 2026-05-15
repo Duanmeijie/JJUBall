@@ -6,11 +6,10 @@ App({
       return
     }
     wx.cloud.init({
-      env: 'your-env-id', // 替换为实际云开发环境 ID
+      env: 'cloud1-d3g4as01110e1d195',
       traceUser: true
     })
 
-    // 自动登录
     this.autoLogin()
   },
 
@@ -19,25 +18,36 @@ App({
     isLogin: false
   },
 
-  // 自动登录
   autoLogin: function () {
     const userInfo = wx.getStorageSync('userInfo')
     if (userInfo && userInfo._openid) {
       this.globalData.userInfo = userInfo
       this.globalData.isLogin = true
     } else {
-      this.login()
+      this.loginWithRetry(3)
     }
   },
 
-  // 调用云函数登录
+  loginWithRetry: function (maxRetries) {
+    let retries = 0
+    const attempt = () => {
+      this.login().catch(err => {
+        retries++
+        if (retries < maxRetries) {
+          setTimeout(attempt, 1000 * retries)
+        }
+      })
+    }
+    attempt()
+  },
+
   login: function () {
     return new Promise((resolve, reject) => {
       wx.cloud.callFunction({
         name: 'login',
         data: {}
       }).then(res => {
-        if (res.result.code === 0) {
+        if (res.result && res.result.code === 0) {
           const userInfo = res.result.data
           this.globalData.userInfo = userInfo
           this.globalData.isLogin = true
@@ -45,7 +55,7 @@ App({
           wx.setStorageSync('userRole', userInfo.role)
           resolve(userInfo)
         } else {
-          reject(res.result)
+          reject(res.result || { message: '登录返回异常' })
         }
       }).catch(err => {
         console.error('登录失败', err)

@@ -1,0 +1,76 @@
+<view class="page-wrap">
+  <view class="header-banner">
+    <text class="header-title">📋 技术档案</text>
+    <text class="header-sub">了解你的技术特点，针对性提升</text>
+  </view>
+
+  <view class="avg-score-card">
+    <view class="avg-score-ring">
+      <text class="avg-score-val">{{avgScore}}</text>
+      <text class="avg-score-label">综合评分</text>
+    </view>
+    <view class="avg-score-info">
+      <text class="info-line">已评估 {{badges.length}} 项技能</text>
+      <text class="info-line">{{masteredCount}} 项技能达到精通</text>
+    </view>
+  </view>
+
+  <view class="view-tabs">
+    <view class="view-tab {{currentView === 'radar' ? 'active' : ''}}" bindtap="switchView" data-view="radar">能力雷达</view>
+    <view class="view-tab {{currentView === 'badges' ? 'active' : ''}}" bindtap="switchView" data-view="badges">成就徽章</view>
+    <view class="view-tab {{currentView === 'skills' ? 'active' : ''}}" bindtap="switchView" data-view="skills">技能详情</view>
+  </view>
+
+  <block wx:if="{{currentView === 'radar'}}">
+    <view class="radar-section">
+      <canvas canvas-id="radarCanvas" class="radar-canvas"></canvas>
+    </view>
+  </block>
+
+  <block wx:if="{{currentView === 'badges'}}">
+    <view class="badges-section">
+      <view class="badge-item" wx:for="{{badges}}" wx:for-item="b" wx:key="name">
+        <view class="badge-icon-wrap">
+          <text class="badge-icon">{{b.icon}}</text>
+        </view>
+        <text class="badge-name">{{b.name}}</text>
+        <text class="badge-desc">{{b.desc || ''}}</text>
+      </view>
+      <view class="empty-tip" wx:if="{{badges.length === 0}}">暂无成就徽章，完成技能评估解锁</view>
+    </view>
+  </block>
+
+  <block wx:if="{{currentView === 'skills'}}">
+    <view class="skills-section">
+      <view class="skill-card" wx:for="{{skillKeys}}" wx:for-item="key" wx:key="*this" bindtap="openAssess" data-key="{{key}}">
+        <view class="skill-header">
+          <text class="skill-icon">{{skillIcons[key]}}</text>
+          <text class="skill-name">{{skillNames[key]}}</text>
+          <text class="skill-score text-bold">{{skills[key] || 0}}</text>
+        </view>
+        <view class="skill-bar">
+          <view class="skill-fill" style="width: {{skills[key] || 0}}%"></view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <view class="assess-panel {{showAssessPanel ? 'show' : ''}}">
+    <view class="panel-mask" bindtap="closeAssess"></view>
+    <view class="panel-content">
+      <text class="panel-title">技能评估</text>
+      <text class="panel-skill">{{skillIcons[editingSkill]}} {{skillNames[editingSkill]}}</text>
+      <text class="panel-score">{{assessScore}}分</text>
+      <slider value="{{assessScore}}" min="0" max="100" step="5" block-color="#D4363C" activeColor="#D4363C" bindchange="sliderChange" />
+      <view class="panel-tips">
+        <text class="tip-item">0-20: 初学者</text>
+        <text class="tip-item">21-40: 入门</text>
+        <text class="tip-item">41-60: 进阶</text>
+        <text class="tip-item">61-80: 熟练</text>
+        <text class="tip-item">81-100: 精通</text>
+      </view>
+      <view class="btn btn-primary" bindtap="submitAssess">提交评估</view>
+      <view class="btn btn-secondary" bindtap="closeAssess">取消</view>
+    </view>
+  </view>
+</view>

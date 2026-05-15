@@ -1,0 +1,19 @@
+<view class="page-wrap">
+  <view class="album-header">
+    <text class="album-title">{{album ? album.title : '相册'}}</text>
+    <text class="album-meta">{{photos.length}} 张照片</text>
+  </view>
+
+  <view class="photo-grid">
+    <view class="photo-item" wx:for="{{photos}}" wx:key="_id" bindtap="viewPhoto" data-id="{{item._id}}">
+      <view class="photo-thumb" style="height: 200rpx">
+        <text class="photo-emoji">🏓</text>
+      </view>
+      <view class="photo-footer">
+        <text class="photo-like">❤️ {{item.likeCount || 0}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-tip" wx:if="{{photos.length === 0 && !loading}}">暂无照片</view>
+</view>

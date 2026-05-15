@@ -1,0 +1,70 @@
+.page-wrap {
+  min-height: 100vh;
+  background: #F5F5F8;
+  padding-bottom: 40rpx;
+}
+
+.album-header {
+  padding: 32rpx 28rpx 24rpx;
+  background: #fff;
+  margin-bottom: 4rpx;
+}
+
+.album-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #2D2D3A;
+  display: block;
+}
+
+.album-meta {
+  font-size: 24rpx;
+  color: #9E9EB0;
+  display: block;
+  margin-top: 8rpx;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6rpx;
+  padding: 6rpx;
+}
+
+.photo-item {
+  position: relative;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.photo-item:active { opacity: 0.8; }
+
+.photo-thumb {
+  background: linear-gradient(135deg, rgba(212,54,60,0.1), rgba(255,107,53,0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-emoji { font-size: 36rpx; opacity: 0.4; }
+
+.photo-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8rpx;
+  background: linear-gradient(transparent, rgba(0,0,0,0.3));
+}
+
+.photo-like {
+  font-size: 20rpx;
+  color: #fff;
+}
+
+.empty-tip {
+  text-align: center;
+  padding: 80rpx;
+  font-size: 26rpx;
+  color: #9E9EB0;
+}

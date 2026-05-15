@@ -27,8 +27,8 @@ Page({
     wx.showLoading({ title: '加载中...' })
     try {
       const res = await db.callFunction('getCreditRules', {})
-      if (res.result && res.result.code === 0) {
-        const data = res.result.data
+      if (res && res.code === 0) {
+        const data = res.data
         const rules = {
           tempCancelScore: data.tempCancelScore || 0,
           absentScore: data.absentScore || 0,
@@ -83,14 +83,14 @@ Page({
         threshold: rules.threshold
       })
 
-      if (res.result && res.result.code === 0) {
+      if (res && res.code === 0) {
         this.setData({
           editing: false,
           originalRules: { ...rules }
         })
         wx.showToast({ title: '保存成功', icon: 'success' })
       } else {
-        wx.showToast({ title: res.result.message || '保存失败', icon: 'none' })
+        wx.showToast({ title: res.message || '保存失败', icon: 'none' })
       }
     } catch (err) {
       console.error('handleSave error:', err)

@@ -1,0 +1,49 @@
+<view class="page-wrap">
+  <view class="header-banner">
+    <text class="header-title">🏆 赛事图谱</text>
+    <text class="header-sub">浏览赛事对阵，追踪比赛进程</text>
+  </view>
+
+  <view class="tournament-list" wx:if="{{!showBracket}}">
+    <view class="tournament-card" wx:for="{{tournaments}}" wx:key="_id">
+      <view class="tournament-top">
+        <text class="tournament-icon">🏆</text>
+        <view class="tournament-info">
+          <text class="tournament-name">{{item.name || '未命名赛事'}}</text>
+          <text class="tournament-desc">{{item.description || ''}}</text>
+        </view>
+      </view>
+      <view class="tournament-meta">
+        <text class="tournament-status {{item.status === 'ongoing' ? 'ongoing' : ''}}">{{item.status === 'ongoing' ? '进行中' : '已结束'}}</text>
+        <view class="bracket-open-btn" bindtap="viewBracket" data-id="{{item._id}}">查看对阵图</view>
+      </view>
+    </view>
+    <view class="empty-tip" wx:if="{{tournaments.length === 0 && !loading}}">暂无赛事数据</view>
+  </view>
+
+  <view class="bracket-overlay" wx:if="{{showBracket}}">
+    <view class="bracket-header">
+      <text class="bracket-title">🏆 {{bracketInfo ? bracketInfo.name : '赛事对阵图'}}</text>
+      <view class="bracket-close" bindtap="closeBracket">✕</view>
+    </view>
+    <view class="bracket-scroll">
+      <view class="bracket-container">
+        <view class="bracket-round" wx:for="{{bracketRounds}}" wx:for-item="round" wx:key="label">
+          <view class="round-label">{{round.label}}</view>
+          <view class="bracket-match" wx:for="{{round.matches}}" wx:key="round">
+            <view class="match-player {{item.winner_openid === item.playerA_openid ? 'winner' : ''}}">
+              <text class="player-name {{item.isEmpty || !item.playerA ? 'empty' : ''}}">{{(item.isEmpty || !item.playerA) ? '待定' : item.playerA.nickName || '未知'}}</text>
+              <text class="player-score" wx:if="{{!item.isEmpty && item.playerA_score != null}}">{{item.playerA_score}}</text>
+            </view>
+            <view class="match-player {{item.winner_openid === item.playerB_openid ? 'winner' : ''}}">
+              <text class="player-name {{item.isEmpty || !item.playerB ? 'empty' : ''}}">{{(item.isEmpty || !item.playerB) ? '待定' : item.playerB.nickName || '未知'}}</text>
+              <text class="player-score" wx:if="{{!item.isEmpty && item.playerB_score != null}}">{{item.playerB_score}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="loading-tip" wx:if="{{loading && !showBracket}}">加载中...</view>
+</view>

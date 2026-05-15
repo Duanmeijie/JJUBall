@@ -41,8 +41,8 @@ Page({
    */
   loadUsers() {
     db.callFunction('getUsers', {}).then(res => {
-      if (res && res.result && res.result.data) {
-        this.setData({ userList: res.result.data })
+      if (res && res.data) {
+        this.setData({ userList: res.data })
       }
     }).catch(err => {
       console.error('Failed to load users:', err)
@@ -148,8 +148,8 @@ Page({
     }
 
     db.callFunction('createMatch', matchData).then(res => {
-      if (res && res.result && res.result.matchId) {
-        const matchId = res.result.matchId
+      if (res && res.matchId) {
+        const matchId = res.matchId
 
         // Step 2: Submit match result
         return db.callFunction('submitMatchResult', {

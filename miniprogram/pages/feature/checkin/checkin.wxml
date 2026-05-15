@@ -1,0 +1,81 @@
+<view class="page-wrap">
+  <view class="header-banner">
+    <view class="header-content">
+      <text class="header-title">🏓 训练打卡</text>
+      <text class="header-sub">坚持训练，见证成长</text>
+    </view>
+  </view>
+
+  <view class="stats-grid">
+    <view class="stat-card stat-card-1">
+      <text class="stat-num">{{stats.currentStreak}}</text>
+      <text class="stat-label">连续打卡</text>
+      <text class="stat-unit">天</text>
+    </view>
+    <view class="stat-card stat-card-2">
+      <text class="stat-num">{{stats.totalCheckins}}</text>
+      <text class="stat-label">累计打卡</text>
+      <text class="stat-unit">天</text>
+    </view>
+    <view class="stat-card stat-card-3">
+      <text class="stat-num">{{stats.totalDuration}}</text>
+      <text class="stat-label">累计训练</text>
+      <text class="stat-unit">分钟</text>
+    </view>
+    <view class="stat-card stat-card-4">
+      <text class="stat-num">{{stats.monthCount}}</text>
+      <text class="stat-label">本月打卡</text>
+      <text class="stat-unit">天</text>
+    </view>
+  </view>
+
+  <view class="checkin-btn-wrap">
+    <view class="checkin-btn {{checkedIn ? 'checked' : ''}}" bindtap="handleCheckin">
+      <text class="checkin-icon">{{checkedIn ? '✅' : '📅'}}</text>
+      <text class="checkin-text">{{checkedIn ? '今日已打卡' : '今日打卡'}}</text>
+    </view>
+  </view>
+
+  <view class="progress-ring-section">
+    <view class="section-label">本月训练进度</view>
+    <view class="progress-track">
+      <view class="progress-fill-grad" style="width: {{monthProgress}}%"></view>
+    </view>
+    <text class="progress-text">{{stats.monthCount}}/30 天 · {{monthProgress}}%</text>
+  </view>
+
+  <view class="calendar-section">
+    <view class="section-label">打卡日历</view>
+    <view class="calendar-grid">
+      <view class="calendar-header">
+        <text class="cal-header-item" wx:for="{{['一','二','三','四','五','六','日']}}" wx:key="*this">{{item}}</text>
+      </view>
+      <view class="calendar-body">
+        <view class="calendar-day"
+              wx:for="{{calendarDays}}"
+              wx:key="index"
+              style="grid-column: {{item.dayOfWeek}}">
+          <view class="day-cell {{item.isToday ? 'today' : ''}} {{item.checked ? 'checked' : ''}} {{!item.isCurrentMonth ? 'other-month' : ''}}">
+            <text class="day-num">{{item.day}}</text>
+            <text class="day-check-mark" wx:if="{{item.checked}}">✓</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="records-section">
+    <view class="section-label">打卡记录</view>
+    <view class="record-item" wx:for="{{records}}" wx:key="_id" wx:for-item="rec">
+      <view class="record-left">
+        <text class="record-emoji">🏓</text>
+        <view class="record-info">
+          <text class="record-date">{{rec.date}}</text>
+          <text class="record-duration">{{rec.duration}} 分钟</text>
+        </view>
+      </view>
+      <text class="record-notes" wx:if="{{rec.notes}}">{{rec.notes}}</text>
+    </view>
+    <view class="empty-tip" wx:if="{{records.length === 0 && !loading}}">暂无打卡记录，今天就开始吧！</view>
+  </view>
+</view>

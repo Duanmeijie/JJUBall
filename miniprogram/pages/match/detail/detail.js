@@ -24,8 +24,8 @@ Page({
    */
   loadDetail(matchId) {
     db.callFunction('getMatchDetail', { matchId }).then(res => {
-      if (res && res.result && res.result.data) {
-        const matchData = res.result.data
+      if (res && res.data) {
+        const matchData = res.data
         const match = {
           ...matchData,
           formattedDate: formatDateTime(matchData.createdAt),

@@ -18,7 +18,15 @@
     "pages/admin/score-rules/score-rules",
     "pages/admin/credit-rules/credit-rules",
     "pages/admin/data-export/data-export",
-    "pages/admin/weather-cancel/weather-cancel"
+    "pages/admin/weather-cancel/weather-cancel",
+    "pages/feature/checkin/checkin",
+    "pages/feature/matchmaking/matchmaking",
+    "pages/feature/skill-profile/skill-profile",
+    "pages/feature/album/album",
+    "pages/feature/album/album-detail/album-detail",
+    "pages/feature/album/photo-detail/photo-detail",
+    "pages/feature/tournament/tournament",
+    "pages/feature/data-dashboard/data-dashboard"
   ],
   "window": {
     "backgroundColor": "#F5F5F8",

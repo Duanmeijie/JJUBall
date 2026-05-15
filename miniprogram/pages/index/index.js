@@ -244,5 +244,53 @@ Page({
     wx.navigateTo({
       url: '/pages/profile/messages/messages'
     })
+  },
+
+  /**
+   * 跳转到训练打卡
+   */
+  goToCheckin() {
+    if (!auth.requireLogin()) return
+    wx.navigateTo({ url: '/pages/feature/checkin/checkin' })
+  },
+
+  /**
+   * 跳转到智能约球
+   */
+  goToMatchmaking() {
+    if (!auth.requireLogin()) return
+    wx.navigateTo({ url: '/pages/feature/matchmaking/matchmaking' })
+  },
+
+  /**
+   * 跳转到技术档案
+   */
+  goToSkillProfile() {
+    if (!auth.requireLogin()) return
+    wx.navigateTo({ url: '/pages/feature/skill-profile/skill-profile' })
+  },
+
+  /**
+   * 跳转到活动相册
+   */
+  goToAlbum() {
+    if (!auth.requireLogin()) return
+    wx.navigateTo({ url: '/pages/feature/album/album' })
+  },
+
+  /**
+   * 跳转到赛事图谱
+   */
+  goToTournament() {
+    if (!auth.requireLogin()) return
+    wx.navigateTo({ url: '/pages/feature/tournament/tournament' })
+  },
+
+  /**
+   * 跳转到数据看板
+   */
+  goToDataDashboard() {
+    if (!auth.requireLogin()) return
+    wx.navigateTo({ url: '/pages/feature/data-dashboard/data-dashboard' })
   }
 })

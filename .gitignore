@@ -28,6 +28,11 @@ yarn.lock
 cloudfunctions/**/node_modules/
 
 # ============================
+# Trae IDE
+# ============================
+.trae/
+
+# ============================
 # Environment & IDE
 # ============================
 .env
@@ -40,6 +45,9 @@ cloudfunctions/**/node_modules/
 *~
 .DS_Store
 Thumbs.db
+*.nodecache
+.eslintcache
+.cache/
 
 # ============================
 # Logs & Temporary Files

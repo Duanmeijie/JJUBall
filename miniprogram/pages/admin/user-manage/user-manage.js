@@ -39,14 +39,14 @@ Page({
         pageSize: PAGE_SIZE
       })
 
-      if (res.result && res.result.code === 0) {
+      if (res && res.code === 0) {
         const roleTextMap = {
           member: '成员',
           referee: '裁判',
           admin: '管理员'
         }
 
-        const newUsers = (res.result.data || []).map(user => ({
+        const newUsers = (res.data || []).map(user => ({
           ...user,
           roleText: roleTextMap[user.role] || '成员'
         }))
@@ -108,7 +108,7 @@ Page({
         role: newRole
       })
 
-      if (res.result && res.result.code === 0) {
+      if (res && res.code === 0) {
         const roleTextMap = {
           member: '成员',
           referee: '裁判',
@@ -124,7 +124,7 @@ Page({
 
         wx.showToast({ title: '修改成功', icon: 'success' })
       } else {
-        wx.showToast({ title: res.result.message || '修改失败', icon: 'none' })
+        wx.showToast({ title: res.message || '修改失败', icon: 'none' })
       }
     } catch (err) {
       console.error('changeRole error:', err)
